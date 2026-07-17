@@ -155,10 +155,30 @@ export default function HomeClient() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-gray-300">
-            <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-            <a href="#proceso" className="hover:text-white transition-colors">Proceso</a>
-            <a href="#casos" className="hover:text-white transition-colors">Casos de Éxito</a>
-            <a href="#faqs" className="hover:text-white transition-colors">Preguntas</a>
+            <a href="/" className="hover:text-white transition-colors">Inicio</a>
+            
+            {/* Services Dropdown */}
+            <div className="relative group/dropdown">
+              <button className="flex items-center gap-1 hover:text-white transition-colors py-2 focus:outline-none">
+                Servicios
+                <svg className="w-4 h-4 transition-transform group-hover/dropdown:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-1 w-56 rounded-xl glass p-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 shadow-xl border border-white/10 z-50">
+                <a href="/servicios/auditoria-ia" className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                  Auditorías de IA
+                </a>
+                <a href="/servicios/consultoria-ia" className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                  Consultoría Estratégica
+                </a>
+              </div>
+            </div>
+
+            <a href="/bogota" className="hover:text-white transition-colors text-cyan-400 font-semibold">IA en Bogotá</a>
+            <a href="/#proceso" className="hover:text-white transition-colors">Proceso</a>
+            <a href="/#casos" className="hover:text-white transition-colors">Casos de Éxito</a>
+            <a href="/#faqs" className="hover:text-white transition-colors">Preguntas</a>
             <a href="#contacto" className="hover:text-white transition-colors">Contacto</a>
           </nav>
 
@@ -188,11 +208,17 @@ export default function HomeClient() {
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden glass border-t border-white/5 py-4 px-6 absolute top-20 left-0 right-0 flex flex-col gap-4">
-            <a href="#servicios" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Servicios</a>
-            <a href="#proceso" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Proceso</a>
-            <a href="#casos" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Casos de Éxito</a>
-            <a href="#faqs" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Preguntas</a>
+          <div className="md:hidden glass border-t border-white/5 py-4 px-6 absolute top-20 left-0 right-0 flex flex-col gap-4 animate-fade-in">
+            <a href="/" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Inicio</a>
+            <div className="pl-4 border-l border-white/10 flex flex-col gap-2">
+              <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Servicios</span>
+              <a href="/servicios/auditoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-gray-300 hover:text-white text-base">Auditorías de IA</a>
+              <a href="/servicios/consultoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-gray-300 hover:text-white text-base">Consultoría Estratégica</a>
+            </div>
+            <a href="/bogota" onClick={() => setMobileMenuOpen(false)} className="py-2 text-cyan-400 hover:text-white text-lg font-semibold">IA en Bogotá</a>
+            <a href="/#proceso" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Proceso</a>
+            <a href="/#casos" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Casos de Éxito</a>
+            <a href="/#faqs" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Preguntas</a>
             <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Contacto</a>
             <a
               href="#contacto"
@@ -217,7 +243,7 @@ export default function HomeClient() {
               Líderes en Consultoría de IA
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-gradient-purple-cyan glow-purple">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-white">
               Agencia de Inteligencia Artificial en Colombia | DigitalMads
             </h1>
 
@@ -570,25 +596,45 @@ export default function HomeClient() {
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/5 bg-black/40">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-gray-500 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center font-display font-bold text-xs text-white">
-              DM
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-500 text-sm mb-8">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center font-display font-bold text-xs text-white">
+                DM
+              </div>
+              <span className="font-display font-bold text-white tracking-tight text-base">
+                digitalmads
+              </span>
             </div>
-            <span className="font-display font-bold text-white tracking-tight text-base">
-              digitalmads
-            </span>
+            <p className="text-xs leading-relaxed text-gray-600">
+              Transformamos empresas mediante arquitectura avanzada de Inteligencia Artificial en toda Colombia.
+            </p>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider font-semibold">
-            <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-            <a href="#proceso" className="hover:text-white transition-colors">Proceso</a>
-            <a href="#casos" className="hover:text-white transition-colors">Casos de Éxito</a>
-            <a href="#contacto" className="hover:text-white transition-colors">Contacto</a>
-          </nav>
+          <div className="space-y-2">
+            <span className="text-xs uppercase font-bold text-gray-400 tracking-wider">Servicios</span>
+            <ul className="space-y-1.5 text-xs">
+              <li><a href="/servicios/auditoria-ia" className="hover:text-white transition-colors">Auditorías de IA</a></li>
+              <li><a href="/servicios/consultoria-ia" className="hover:text-white transition-colors">Consultoría Estratégica</a></li>
+            </ul>
+          </div>
 
+          <div className="space-y-2">
+            <span className="text-xs uppercase font-bold text-gray-400 tracking-wider">Ubicaciones</span>
+            <ul className="space-y-1.5 text-xs">
+              <li><a href="/bogota" className="hover:text-white transition-colors">IA en Bogotá</a></li>
+              <li><a href="/" className="hover:text-white transition-colors">Colombia (Nacional)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-600 text-xs">
           <div>
             © {new Date().getFullYear()} DigitalMads. Todos los derechos reservados.
+          </div>
+          <div className="flex gap-4">
+            <a href="/#proceso" className="hover:text-white transition-colors">Proceso</a>
+            <a href="/#casos" className="hover:text-white transition-colors">Casos de Éxito</a>
           </div>
         </div>
       </footer>

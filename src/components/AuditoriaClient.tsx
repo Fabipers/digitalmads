@@ -1,31 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AuditoriaClient() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [scanStatus, setScanStatus] = useState("Escaneando...");
+
+  // Mock scanner logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          setScanStatus("Análisis de Viabilidad Técnico Completo");
+          return 100;
+        }
+        if (prev === 30) setScanStatus("Comprobando fuga de datos...");
+        if (prev === 60) setScanStatus("Evaluando latencia de APIs corporativas...");
+        if (prev === 85) setScanStatus("Generando reporte de ROI estimado...");
+        return prev + 1;
+      });
+    }, 150);
+    return () => clearInterval(interval);
+  }, []);
 
   const auditSteps = [
     {
-      num: "01",
-      title: "Mapeo de Flujos de Trabajo",
-      desc: "Revisamos junto a tus directivos y líderes de departamento los procesos manuales y repetitivos más costosos en tiempo y recursos.",
+      phase: "Fase 1",
+      title: "Mapeo de Flujos y Procesos",
+      desc: "Localizamos cuellos de botella operativos y tareas rutinarias que pueden delegarse a agentes autónomos de lenguaje natural.",
     },
     {
-      num: "02",
-      title: "Evaluación de Datos y Conectividad",
-      desc: "Analizamos la calidad, estructuración y accesibilidad de tus bases de datos corporativas para evaluar la viabilidad de integrar bases de conocimiento vectoriales (RAG).",
+      phase: "Fase 2",
+      title: "Análisis de Fuga de Datos (Data Leakage)",
+      desc: "Evaluamos el cumplimiento de privacidad de tus datos corporativos sensibles para evitar fugas en modelos LLM públicos.",
     },
     {
-      num: "03",
-      title: "Análisis de Rentabilidad (ROI)",
-      desc: "Calculamos el retorno de inversión potencial y la reducción de costos operativos proyectados para cada integración técnica recomendada.",
-    },
-    {
-      num: "04",
-      title: "Informe de Factibilidad y Arquitectura",
-      desc: "Entregamos un documento con la arquitectura sugerida, API stack, costes de API estimados y plazos de implementación para cada agente de IA.",
+      phase: "Fase 3",
+      title: "Cálculo de ROI y Arquitectura",
+      desc: "Diseñamos la topología ideal de base de vectores (RAG), coste estimado de consultas por token y ahorro proyectado.",
     },
   ];
 
@@ -56,7 +70,27 @@ export default function AuditoriaClient() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-gray-300">
-            <a href="/#servicios" className="hover:text-white transition-colors">Servicios</a>
+            <a href="/" className="hover:text-white transition-colors">Inicio</a>
+            
+            {/* Services Dropdown */}
+            <div className="relative group/dropdown">
+              <button className="flex items-center gap-1 hover:text-white transition-colors py-2 focus:outline-none">
+                Servicios
+                <svg className="w-4 h-4 transition-transform group-hover/dropdown:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-1 w-56 rounded-xl glass p-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 shadow-xl border border-white/10 z-50">
+                <a href="/servicios/auditoria-ia" className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors border-b border-white/5">
+                  Auditorías de IA
+                </a>
+                <a href="/servicios/consultoria-ia" className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                  Consultoría Estratégica
+                </a>
+              </div>
+            </div>
+
+            <a href="/bogota" className="hover:text-white transition-colors text-cyan-400 font-semibold">IA en Bogotá</a>
             <a href="/#proceso" className="hover:text-white transition-colors">Proceso</a>
             <a href="/#casos" className="hover:text-white transition-colors">Casos de Éxito</a>
             <a href="#contacto" className="hover:text-white transition-colors">Contacto</a>
@@ -88,8 +122,14 @@ export default function AuditoriaClient() {
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden glass border-t border-white/5 py-4 px-6 absolute top-20 left-0 right-0 flex flex-col gap-4">
-            <a href="/#servicios" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Servicios</a>
+          <div className="md:hidden glass border-t border-white/5 py-4 px-6 absolute top-20 left-0 right-0 flex flex-col gap-4 animate-fade-in">
+            <a href="/" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Inicio</a>
+            <div className="pl-4 border-l border-white/10 flex flex-col gap-2">
+              <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Servicios</span>
+              <a href="/servicios/auditoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-gray-300 hover:text-white text-base font-semibold">Auditorías de IA</a>
+              <a href="/servicios/consultoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-gray-300 hover:text-white text-base">Consultoría Estratégica</a>
+            </div>
+            <a href="/bogota" onClick={() => setMobileMenuOpen(false)} className="py-2 text-cyan-400 hover:text-white text-lg font-semibold">IA en Bogotá</a>
             <a href="/#proceso" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Proceso</a>
             <a href="/#casos" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Casos de Éxito</a>
             <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-300 hover:text-white text-lg">Contacto</a>
@@ -106,43 +146,97 @@ export default function AuditoriaClient() {
 
       {/* Hero Section */}
       <section className="relative pt-16 pb-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-xs md:text-sm font-semibold tracking-wider text-purple-300 uppercase shadow-[0_0_15px_rgba(139,92,246,0.1)]">
-            Servicio de Diagnóstico Técnico
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-gradient-purple-cyan glow-purple">
-            Auditorías de Inteligencia Artificial
-          </h1>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 relative z-10">
+          <div className="flex-1 space-y-8 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-xs md:text-sm font-semibold tracking-wider text-purple-300 uppercase shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+              Diagnóstico y Ciberseguridad Avanzada
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 glow-purple">
+              Auditorías de Inteligencia Artificial
+            </h1>
 
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-light">
-            Evaluamos la infraestructura digital, almacenamiento de datos y flujos de trabajo de tu empresa para diseñar automatizaciones viables de alto impacto operativo.
-          </p>
+            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+              Escaneamos y diagnosticamos tus flujos de trabajo corporativos para identificar fugas de información, vulnerabilidades éticas y oportunidades técnicas de automatización rentable.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a
+                href="#contacto"
+                className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:shadow-[0_0_35px_rgba(139,92,246,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 text-center"
+              >
+                Solicitar Auditoría Corporativa
+              </a>
+              <a
+                href="#fases"
+                className="px-8 py-4 rounded-xl glass hover:bg-white/5 border-white/10 text-white font-semibold transition-all duration-300 transform hover:-translate-y-0.5 text-center"
+              >
+                Ver Fases Técnicas
+              </a>
+            </div>
+          </div>
+
+          {/* Technical Scanner Graphic Block */}
+          <div className="flex-1 w-full relative">
+            <div className="absolute inset-[-10%] rounded-full bg-purple-500/10 blur-[80px] -z-10 pointer-events-none" />
+            
+            <div className="glass-card rounded-2xl border border-white/10 overflow-hidden shadow-2xl p-6 font-mono text-xs md:text-sm text-purple-300 space-y-4">
+              <div className="flex justify-between items-center text-gray-500 pb-2 border-b border-white/5">
+                <span>VULNERABILITY SCANNER v1.02</span>
+                <span className="text-cyan-400 animate-pulse">● ACTIVE SCAN</span>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex justify-between text-xs text-gray-400">
+                  <span>Progreso de Análisis:</span>
+                  <span>{progress}%</span>
+                </div>
+                <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-purple-500 to-cyan-400 h-full transition-all duration-150" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+
+              <div className="space-y-1 text-gray-400 text-[10px] md:text-xs">
+                <div>[INFO] Target: Corporate-DB-Node-02</div>
+                <div>[STATUS] {scanStatus}</div>
+                {progress > 20 && <div className="text-emerald-400">✓ [OK] Model API key Encryption: Checked</div>}
+                {progress > 50 && <div className="text-emerald-400">✓ [OK] Corporate RAG document pipeline: Secured</div>}
+                {progress > 80 && <div className="text-yellow-400">! [WARN] Detected 2 unoptimized background workflows (Make/Zapier)</div>}
+              </div>
+
+              <div className="p-3 bg-white/5 rounded-xl border border-white/5 flex items-center justify-between">
+                <span className="text-xs text-gray-300">Latencia de Modelo Estimada:</span>
+                <span className="text-cyan-400 font-bold">120ms (Optimal)</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Technical content block */}
-      <section className="py-16 max-w-5xl mx-auto px-6">
-        <div className="glass-card rounded-3xl p-8 md:p-12 space-y-12 border border-white/5">
-          <div className="space-y-6">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-white">¿En qué consiste nuestra Auditoría Técnica?</h2>
-            <p className="text-gray-400 leading-relaxed text-sm md:text-base font-light">
-              Muchas organizaciones cometen el error de implementar Inteligencia Artificial sin estructurar sus datos o entender sus cuellos de botella reales. Nuestra auditoría técnica realiza un escaneo profundo de la infraestructura de tu organización para asegurar que cualquier integración de agentes autónomos o LLMs sea **viable, segura y rentable**.
-            </p>
-            <p className="text-gray-400 leading-relaxed text-sm md:text-base font-light">
-              Analizamos los sistemas legados corporativos (CRMs, bases de datos SQL/NoSQL, almacenamiento en la nube) y proponemos soluciones que respeten la seguridad de la información corporativa, asegurando que tus datos no se utilicen para entrenar modelos públicos externos.
-            </p>
-          </div>
+      {/* Audit Phases Content Blocks */}
+      <section id="fases" className="py-24 max-w-7xl mx-auto px-6 border-t border-white/5">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-purple-400 text-xs md:text-sm font-semibold tracking-widest uppercase">Diagnóstico Estructurado</h2>
+          <h3 className="text-3xl md:text-5xl font-display font-bold">Fases de la Auditoría Técnica de IA</h3>
+          <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            Nuestro equipo de ingenieros de datos y seguridad evalúa detalladamente la infraestructura existente bajo un proceso transparente y riguroso.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
-            {auditSteps.map((step, idx) => (
-              <div key={idx} className="bg-white/5 border border-white/5 p-6 rounded-2xl space-y-4 hover:border-purple-500/20 transition-all duration-300">
-                <div className="text-2xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">{step.num}</div>
-                <h3 className="text-lg font-display font-bold text-white">{step.title}</h3>
-                <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-light">{step.desc}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {auditSteps.map((step, idx) => (
+            <div key={idx} className="glass-card backdrop-blur-md rounded-2xl p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-300 space-y-4 relative group">
+              <div className="absolute top-4 right-6 text-5xl font-display font-extrabold text-white/5 group-hover:text-purple-500/10 transition-colors">
+                {step.phase}
               </div>
-            ))}
-          </div>
+              <h4 className="text-xl font-display font-bold text-white pt-4">
+                {step.title}
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed font-light">
+                {step.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -151,9 +245,9 @@ export default function AuditoriaClient() {
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <div className="glass-card rounded-3xl border border-white/10 p-8 md:p-12 space-y-8">
             <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold">Solicita una Auditoría Técnica</h3>
+              <h3 className="text-3xl md:text-4xl font-display font-bold">Agenda tu Auditoría de IA</h3>
               <p className="text-gray-400 text-sm">
-                Completa el formulario y analizaremos la viabilidad técnica preliminar de tu negocio.
+                Completa el formulario corporativo y te enviaremos una propuesta de diagnóstico técnico en 24 horas.
               </p>
             </div>
 
@@ -191,7 +285,7 @@ export default function AuditoriaClient() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-500 font-semibold" htmlFor="message">Descripción corta de tu infraestructura</label>
+                  <label className="text-xs uppercase tracking-wider text-gray-500 font-semibold" htmlFor="message">Descripción de tu infraestructura y software legado</label>
                   <textarea
                     id="message"
                     rows={4}
@@ -215,17 +309,45 @@ export default function AuditoriaClient() {
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/5 bg-black/40">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-gray-500 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center font-display font-bold text-xs text-white">
-              DM
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-500 text-sm mb-8">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center font-display font-bold text-xs text-white">
+                DM
+              </div>
+              <span className="font-display font-bold text-white tracking-tight text-base">
+                digitalmads
+              </span>
             </div>
-            <span className="font-display font-bold text-white tracking-tight text-base">
-              digitalmads
-            </span>
+            <p className="text-xs leading-relaxed text-gray-600">
+              Transformamos empresas mediante arquitectura avanzada de Inteligencia Artificial en toda Colombia.
+            </p>
           </div>
+
+          <div className="space-y-2">
+            <span className="text-xs uppercase font-bold text-gray-400 tracking-wider">Servicios</span>
+            <ul className="space-y-1.5 text-xs">
+              <li><a href="/servicios/auditoria-ia" className="hover:text-white transition-colors">Auditorías de IA</a></li>
+              <li><a href="/servicios/consultoria-ia" className="hover:text-white transition-colors">Consultoría Estratégica</a></li>
+            </ul>
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-xs uppercase font-bold text-gray-400 tracking-wider">Ubicaciones</span>
+            <ul className="space-y-1.5 text-xs">
+              <li><a href="/bogota" className="hover:text-white transition-colors">IA en Bogotá</a></li>
+              <li><a href="/" className="hover:text-white transition-colors">Colombia (Nacional)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-600 text-xs">
           <div>
             © {new Date().getFullYear()} DigitalMads. Todos los derechos reservados.
+          </div>
+          <div className="flex gap-4">
+            <a href="/#proceso" className="hover:text-white transition-colors">Proceso</a>
+            <a href="/#casos" className="hover:text-white transition-colors">Casos de Éxito</a>
           </div>
         </div>
       </footer>
