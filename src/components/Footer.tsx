@@ -49,6 +49,7 @@ export default function Footer() {
             <li><a href="/" className="hover:text-[#0F172A] transition-colors">Inicio</a></li>
             <li><a href="/#proceso" className="hover:text-[#0F172A] transition-colors">Proceso</a></li>
             <li><a href="/#casos" className="hover:text-[#0F172A] transition-colors">Casos de Éxito</a></li>
+            <li><a href="/contacto" className="hover:text-[#0F172A] transition-colors">Contacto</a></li>
           </ul>
         </div>
       </div>

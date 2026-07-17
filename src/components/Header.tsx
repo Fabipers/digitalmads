@@ -113,7 +113,7 @@ export default function Header() {
 
         <div className="hidden md:flex items-center">
           <a
-            href="#contacto"
+            href="/contacto"
             className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm shadow-sm transition-all duration-300 transform hover:-translate-y-0.5"
           >
             Agendar Asesoría
@@ -199,7 +199,7 @@ export default function Header() {
           </a>
           
           <a
-            href="#contacto"
+            href="/contacto"
             onClick={() => setMobileMenuOpen(false)}
             className="py-3 mt-2 rounded-xl bg-purple-600 text-center text-white font-medium text-base shadow-sm hover:bg-purple-700"
           >
