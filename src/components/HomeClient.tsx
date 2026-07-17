@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function HomeClient() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [activeTab, setActiveTab] = useState("fintech");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -104,7 +106,7 @@ export default function HomeClient() {
     {
       step: "04",
       title: "Escalabilidad Continua",
-      desc: "Monitorizamos los agentes de IA optimizando sus prompts y modelos conforme evoluciona tu volumen de negocio.",
+      desc: "Monitorizamos los agentes de IA optimizando sus prompts and modelos conforme evoluciona tu volumen de negocio.",
     },
   ];
 
@@ -127,10 +129,41 @@ export default function HomeClient() {
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
+    setIsSubmitting(true);
+    setIsError(false);
+    setFormSubmitted(false);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      needs: formData.get("needs"),
+      message: formData.get("message"),
+      source: "Colombia Landing"
+    };
+
+    try {
+      const response = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        setFormSubmitted(true);
+        e.currentTarget.reset();
+      } else {
+        setIsError(true);
+      }
+    } catch (err) {
+      console.error(err);
+      setIsError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -512,21 +545,28 @@ export default function HomeClient() {
             </div>
 
             {formSubmitted ? (
-              <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-center space-y-2">
+              <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-center space-y-2 animate-fade-in">
                 <svg className="w-12 h-12 text-emerald-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h4 className="text-lg font-bold text-emerald-300">¡Mensaje recibido con éxito!</h4>
-                <p className="text-gray-400 text-sm">Nos pondremos en contacto contigo de inmediato para agendar tu llamada técnica.</p>
+                <h4 className="text-lg font-bold text-emerald-300">¡Petición enviada con éxito!</h4>
+                <p className="text-gray-400 text-sm">Nos pondremos en contacto contigo de inmediato (en menos de 24h) para agendar tu llamada técnica.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {isError && (
+                  <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-center text-rose-300 text-xs font-medium animate-fade-in">
+                    Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
+                  </div>
+                )}
+                
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-wider text-gray-500 font-semibold" htmlFor="name">Nombre Completo</label>
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       required
                       placeholder="Ej. Juan Pérez"
                       className="w-full px-4 py-3 bg-black/30 border border-white/10 focus:border-purple-500 rounded-xl focus:outline-none text-white placeholder-gray-600 transition-colors"
@@ -537,6 +577,7 @@ export default function HomeClient() {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       required
                       placeholder="juan@empresa.com"
                       className="w-full px-4 py-3 bg-black/30 border border-white/10 focus:border-purple-500 rounded-xl focus:outline-none text-white placeholder-gray-600 transition-colors"
@@ -550,6 +591,7 @@ export default function HomeClient() {
                     <input
                       type="text"
                       id="company"
+                      name="company"
                       required
                       placeholder="Ej. CoreCorp"
                       className="w-full px-4 py-3 bg-black/30 border border-white/10 focus:border-purple-500 rounded-xl focus:outline-none text-white placeholder-gray-600 transition-colors"
@@ -559,6 +601,7 @@ export default function HomeClient() {
                     <label className="text-xs uppercase tracking-wider text-gray-500 font-semibold" htmlFor="needs">Especialidad de Interés</label>
                     <select
                       id="needs"
+                      name="needs"
                       required
                       className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/10 focus:border-purple-500 rounded-xl focus:outline-none text-white transition-colors"
                     >
@@ -575,6 +618,7 @@ export default function HomeClient() {
                   <label className="text-xs uppercase tracking-wider text-gray-500 font-semibold" htmlFor="message">Cuéntanos sobre tu proyecto</label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={4}
                     required
                     placeholder="Describe brevemente tus necesidades o los cuellos de botella actuales de tu empresa..."
@@ -584,9 +628,10 @@ export default function HomeClient() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-all duration-300"
+                  disabled={isSubmitting}
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Enviar Petición de Consultoría
+                  {isSubmitting ? "Enviando..." : "Enviar Petición de Consultoría"}
                 </button>
               </form>
             )}

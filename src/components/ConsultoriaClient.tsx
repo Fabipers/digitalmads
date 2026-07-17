@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function ConsultoriaClient() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const modelEcosystem = [
     {
@@ -63,10 +65,41 @@ export default function ConsultoriaClient() {
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
+    setIsSubmitting(true);
+    setIsError(false);
+    setFormSubmitted(false);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      company: "Strategic Consulting Lead",
+      needs: "Consultoría Estratégica en IA",
+      message: formData.get("message"),
+      source: "Consultoría Estratégica"
+    };
+
+    try {
+      const response = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        setFormSubmitted(true);
+        e.currentTarget.reset();
+      } else {
+        setIsError(true);
+      }
+    } catch (err) {
+      console.error(err);
+      setIsError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -264,17 +297,24 @@ export default function ConsultoriaClient() {
                 <svg className="w-12 h-12 text-emerald-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h4 className="text-lg font-bold text-emerald-300">¡Mensaje recibido!</h4>
-                <p className="text-gray-400 text-sm">Uno de nuestros consultores senior se pondrá en contacto contigo.</p>
+                <h4 className="text-lg font-bold text-emerald-300">¡Petición enviada con éxito!</h4>
+                <p className="text-gray-400 text-sm">Nos pondremos en contacto contigo de inmediato (en menos de 24h) para coordinar la sesión de consultoría.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {isError && (
+                  <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-center text-rose-300 text-xs font-medium">
+                    Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
+                  </div>
+                )}
+                
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-wider text-gray-500 font-semibold" htmlFor="name">Nombre</label>
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       required
                       placeholder="Ej. Juan Pérez"
                       className="w-full px-4 py-3 bg-black/30 border border-white/10 focus:border-purple-500 rounded-xl focus:outline-none text-white transition-colors"
@@ -285,6 +325,7 @@ export default function ConsultoriaClient() {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       required
                       placeholder="juan@empresa.com"
                       className="w-full px-4 py-3 bg-black/30 border border-white/10 focus:border-purple-500 rounded-xl focus:outline-none text-white transition-colors"
@@ -296,6 +337,7 @@ export default function ConsultoriaClient() {
                   <label className="text-xs uppercase tracking-wider text-gray-500 font-semibold" htmlFor="message">¿Cuáles son tus objetivos estratégicos?</label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={4}
                     required
                     placeholder="Cuéntanos brevemente sobre las necesidades estratégicas de tu empresa..."
@@ -305,9 +347,10 @@ export default function ConsultoriaClient() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-all duration-300"
+                  disabled={isSubmitting}
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Agendar Sesión de Consultoría
+                  {isSubmitting ? "Enviando..." : "Agendar Sesión de Consultoría"}
                 </button>
               </form>
             )}
