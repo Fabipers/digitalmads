@@ -4,11 +4,15 @@ import nodemailer from 'nodemailer';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, company, needs, message, source } = body;
+    const { name, email, phone, company, needs, message, source } = body;
 
-    if (!name || !email || !message) {
-      return NextResponse.json({ error: 'Campos obligatorios faltantes' }, { status: 400 });
+    if (!name || !email || !phone || !message) {
+      return NextResponse.json({ error: 'Campos obligatorios faltantes (nombre, email, teléfono, mensaje)' }, { status: 400 });
     }
+
+    // Clean phone number for direct wa.me link
+    const cleanPhone = phone.replace(/\D/g, '');
+    const whatsappUrl = `https://wa.me/${cleanPhone}`;
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -33,6 +37,10 @@ export async function POST(request: Request) {
           <div style="background-color: #0c0c14; padding: 20px; border-radius: 8px; border: 1px solid #222230; margin-bottom: 20px;">
             <p style="margin: 8px 0;"><strong>Nombre:</strong> ${name}</p>
             <p style="margin: 8px 0;"><strong>Email:</strong> ${email}</p>
+            <p style="margin: 8px 0;">
+              <strong>Teléfono/WhatsApp:</strong> ${phone} 
+              (<a href="${whatsappUrl}" style="color: #06b6d4; text-decoration: underline;" target="_blank">Contactar por WhatsApp</a>)
+            </p>
             <p style="margin: 8px 0;"><strong>Empresa:</strong> ${company || 'No especificada'}</p>
             <p style="margin: 8px 0;"><strong>Interés:</strong> ${needs || 'No especificado'}</p>
             <p style="margin: 8px 0;"><strong>Origen de Navegación:</strong> <span style="color: #06b6d4; font-weight: bold;">${source || 'General'}</span></p>

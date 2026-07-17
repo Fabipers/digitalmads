@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Header from "../Header";
+import Footer from "../Footer";
 
 export default function SaludClient() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -33,6 +34,7 @@ export default function SaludClient() {
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
+      phone: formData.get("phone"),
       company: formData.get("company") || "Medical/Healthcare Lead",
       needs: "Inteligencia Artificial en Salud y Gestión Médica",
       message: formData.get("message"),
@@ -61,194 +63,144 @@ export default function SaludClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafc] text-[#111113] relative font-sans">
+    <div className="min-h-screen bg-white text-[#0F172A] relative font-sans">
       {/* Light Mode Fine Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 -z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 -z-10 pointer-events-none" />
 
-      {/* Floating Light Glass Navbar */}
-      <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-gray-200/50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center font-display font-bold text-xl text-white shadow-sm">
-              DM
-            </div>
-            <span className="font-display font-extrabold text-2xl tracking-tight text-gray-900">
-              digital<span className="text-purple-600">mads</span>
-            </span>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-gray-600">
-            <a href="/" className="hover:text-gray-900 transition-colors">Inicio</a>
-            
-            {/* Services Dropdown */}
-            <div className="relative group/dropdown">
-              <button className="flex items-center gap-1 hover:text-gray-900 transition-colors py-2 focus:outline-none">
-                Servicios
-                <svg className="w-4 h-4 transition-transform group-hover/dropdown:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div className="absolute top-full left-0 mt-1 w-56 rounded-xl bg-white border border-gray-200 p-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200 shadow-lg z-50">
-                <a href="/servicios/auditoria-ia" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
-                  Auditorías de IA
-                </a>
-                <a href="/servicios/consultoria-ia" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
-                  Consultoría Estratégica
-                </a>
-              </div>
-            </div>
-
-            <a href="/bogota" className="hover:text-gray-900 transition-colors text-purple-600 font-semibold">IA en Bogotá</a>
-            <a href="/#proceso" className="hover:text-gray-900 transition-colors">Proceso</a>
-            <a href="/#casos" className="hover:text-gray-900 transition-colors">Casos de Éxito</a>
-            <a href="#contacto" className="hover:text-gray-900 transition-colors">Contacto</a>
-          </nav>
-
-          <div className="hidden md:flex items-center">
-            <a
-              href="#contacto"
-              className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm shadow-sm transition-all duration-300 transform hover:-translate-y-0.5"
-            >
-              Agendar Asesoría
-            </a>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-gray-200 py-4 px-6 absolute top-20 left-0 right-0 flex flex-col gap-4 shadow-lg">
-            <a href="/" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-700 hover:text-gray-900 text-lg">Inicio</a>
-            <div className="pl-4 border-l border-gray-200 flex flex-col gap-2">
-              <span className="text-xs uppercase tracking-wider text-gray-400 font-bold">Servicios</span>
-              <a href="/servicios/auditoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-gray-600 hover:text-gray-900 text-base">Auditorías de IA</a>
-              <a href="/servicios/consultoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-gray-600 hover:text-gray-900 text-base">Consultoría Estratégica</a>
-            </div>
-            <a href="/bogota" onClick={() => setMobileMenuOpen(false)} className="py-2 text-purple-600 hover:text-purple-700 text-lg font-semibold">IA en Bogotá</a>
-            <a href="/#proceso" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-700 hover:text-gray-900 text-lg">Proceso</a>
-            <a href="/#casos" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-700 hover:text-gray-900 text-lg">Casos de Éxito</a>
-            <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="py-2 text-gray-700 hover:text-gray-900 text-lg">Contacto</a>
-            <a
-              href="#contacto"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-3 rounded-xl bg-purple-600 text-center text-white font-medium text-base shadow-sm"
-            >
-              Agendar Asesoría
-            </a>
-          </div>
-        )}
-      </header>
+      <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-16 pb-24 overflow-hidden">
+      <section className="relative pt-20 pb-24 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
             Salud & Healthcare Vertical
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-gray-900">
-            Inteligencia Artificial en <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Salud y Gestión Médica</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
+            Inteligencia Artificial en <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Salud y Gestión Médica Avanzada</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-[#475569] max-w-2xl mx-auto leading-relaxed font-light">
             Estructuración inteligente de flujos clínicos, asistentes síncronos de transcripción médica y optimización del agendamiento de pacientes con máxima privacidad y control ético.
           </p>
         </div>
       </section>
 
       {/* Main Content Blocks */}
-      <section className="py-16 max-w-5xl mx-auto px-6">
-        <div className="bg-white border border-gray-200 rounded-3xl p-8 md:p-12 space-y-12 shadow-sm">
+      <section className="py-16 max-w-5xl mx-auto px-6 space-y-12">
+        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
           <div className="space-y-4">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900">Seguridad de Datos y Eficiencia en Salud</h2>
-            <p className="text-gray-600 leading-relaxed text-sm md:text-base font-light">
-              La gestión médica contemporánea requiere la automatización de tareas que quitan valioso tiempo a los profesionales sanitarios. Nuestras soluciones de IA facilitan la transcripción de consultas mediante APIs estructuradas en la nube, garantizando que el historial clínico y los datos personales permanezcan 100% seguros y bajo el control de tu institución.
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A]">
+              Reducción de la Carga Administrativa del Personal Médico
+            </h2>
+            <p className="text-[#475569] leading-relaxed text-sm md:text-base font-light">
+              El personal médico en clínicas y hospitales dedica hasta un 40% de su jornada laboral a redactar informes de consulta, estructurar recetas y actualizar registros en sistemas de salud legados. Diseñamos pipelines conversacionales que automatizan y simplifican el flujo administrativo del hospital, permitiendo que los profesionales de la salud se enfoquen puramente en la experiencia y cuidado del paciente.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
-            {services.map((service, idx) => (
-              <div key={idx} className="bg-gray-50 border border-gray-100 p-6 rounded-2xl space-y-3">
-                <h3 className="text-lg font-display font-bold text-gray-900">{service.title}</h3>
-                <p className="text-gray-600 text-xs md:text-sm leading-relaxed font-light">{service.desc}</p>
-              </div>
-            ))}
+          <div className="space-y-4 border-t border-gray-200 pt-8">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A]">
+              Transcripción Clínica Segura con Whisper y LLMs Privados
+            </h2>
+            <p className="text-[#475569] leading-relaxed text-sm md:text-base font-light">
+              Utilizando la API avanzada de Whisper adaptada a vocabulario médico latinoamericano y modelos de lenguaje de código abierto locales (Llama 3 hosted), transcribimos de manera síncrona las consultas del profesional de la salud. Estructuramos automáticamente el diagnóstico e historial clínico en variables legibles por tu base de datos central sin fuga de datos confidenciales al exterior.
+            </p>
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+          {services.map((service, idx) => (
+            <div key={idx} className="bg-white border border-gray-200 p-6 rounded-2xl space-y-3 shadow-sm">
+              <h3 className="text-lg font-display font-bold text-[#0F172A]">{service.title}</h3>
+              <p className="text-[#475569] text-xs md:text-sm leading-relaxed font-light">{service.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* CTA / Contact Section */}
       <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="bg-white border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
+          <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
             <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-gray-900">Solicita Asesoría para tu Centro Médico</h3>
-              <p className="text-gray-600 text-sm">
+              <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Solicita Asesoría para tu Centro Médico</h3>
+              <p className="text-[#475569] text-sm font-light">
                 Completa el formulario y nos contactaremos para diseñar un plan piloto para tu clínica u hospital.
               </p>
             </div>
 
             {formSubmitted ? (
-              <div className="p-6 bg-emerald-5 border border-emerald-200 rounded-2xl text-center space-y-2">
+              <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
                 <h4 className="text-lg font-bold text-emerald-800">¡Petición enviada con éxito!</h4>
-                <p className="text-emerald-700 text-sm">Nos pondremos en contacto contigo en menos de 24 horas.</p>
+                <p className="text-[#475569] text-sm">Nos pondremos en contacto contigo en menos de 24 horas.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {isError && (
-                  <div className="p-4 bg-rose-5 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
+                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
                     Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
                   </div>
                 )}
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-wider text-gray-600 font-semibold" htmlFor="name">Nombre</label>
+                    <label className="text-xs uppercase tracking-wider text-[#475569] font-semibold" htmlFor="name">Nombre</label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       required
                       placeholder="Ej. Juan Pérez"
-                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-gray-900 transition-colors"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] transition-colors"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-wider text-gray-600 font-semibold" htmlFor="email">Correo Corporativo</label>
+                    <label className="text-xs uppercase tracking-wider text-[#475569] font-semibold" htmlFor="email">Correo Corporativo</label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
                       placeholder="juan@empresa.com"
-                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-gray-900 transition-colors"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs uppercase tracking-wider text-[#475569] font-semibold" htmlFor="phone">Teléfono / WhatsApp</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      placeholder="Ej. +57 300 123 4567"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs uppercase tracking-wider text-[#475569] font-semibold" htmlFor="company">Clínica / Institución</label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      required
+                      placeholder="Ej. Hospital Central"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-600 font-semibold" htmlFor="message">Cuéntanos sobre tus necesidades de gestión médica</label>
+                  <label className="text-xs uppercase tracking-wider text-[#475569] font-semibold" htmlFor="message">Cuéntanos sobre tus necesidades de gestión médica</label>
                   <textarea
                     id="message"
                     name="message"
                     rows={4}
                     required
                     placeholder="Describe brevemente tus necesidades o los cuellos de botella actuales..."
-                    className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-gray-900 resize-none transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] resize-none transition-colors"
                   />
                 </div>
 
@@ -265,59 +217,7 @@ export default function SaludClient() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 border-t border-gray-200 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-500 text-sm mb-8">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center font-display font-bold text-xs text-white">
-                DM
-              </div>
-              <span className="font-display font-bold text-gray-900 tracking-tight text-base">
-                digitalmads
-              </span>
-            </div>
-            <p className="text-xs leading-relaxed text-gray-500">
-              Transformamos empresas mediante arquitectura avanzada de Inteligencia Artificial en toda Colombia.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <span className="text-xs uppercase font-bold text-gray-700 tracking-wider">Servicios</span>
-            <ul className="space-y-1.5 text-xs">
-              <li><a href="/servicios/auditoria-ia" className="hover:text-gray-900 transition-colors">Auditorías de IA</a></li>
-              <li><a href="/servicios/consultoria-ia" className="hover:text-gray-900 transition-colors">Consultoría Estratégica</a></li>
-              <li><a href="/servicios/desarrollo-llm" className="hover:text-gray-900 transition-colors">Desarrollo LLM</a></li>
-            </ul>
-          </div>
-
-          <div className="space-y-2">
-            <span className="text-xs uppercase font-bold text-gray-700 tracking-wider">Integraciones</span>
-            <ul className="space-y-1.5 text-xs">
-              <li><a href="/integraciones/crm" className="hover:text-gray-900 transition-colors">Integración CRM</a></li>
-              <li><a href="/integraciones/whatsapp" className="hover:text-gray-900 transition-colors">Agentes de WhatsApp</a></li>
-            </ul>
-          </div>
-
-          <div className="space-y-2">
-            <span className="text-xs uppercase font-bold text-gray-700 tracking-wider">Ubicaciones</span>
-            <ul className="space-y-1.5 text-xs">
-              <li><a href="/bogota" className="hover:text-gray-900 transition-colors">IA en Bogotá</a></li>
-              <li><a href="/" className="hover:text-gray-900 transition-colors">Colombia (Nacional)</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-500 text-xs">
-          <div>
-            © {new Date().getFullYear()} DigitalMads. Todos los derechos reservados.
-          </div>
-          <div className="flex gap-4">
-            <a href="/#proceso" className="hover:text-gray-900 transition-colors">Proceso</a>
-            <a href="/#casos" className="hover:text-gray-900 transition-colors">Casos de Éxito</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
