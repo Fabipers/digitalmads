@@ -241,14 +241,14 @@ export default function BlogPostPage({ params }: Props) {
               <div className="space-y-3 text-xs md:text-sm text-[#475569]">
                 <div className="flex items-center gap-2">
                   <span className="text-purple-600 font-bold">Email:</span>
-                  <a href="mailto:contacto@digitalmads.co" className="hover:text-purple-600 font-medium">
-                    contacto@digitalmads.co
+                  <a href="mailto:hola@fabipers.com" className="hover:text-purple-600 font-medium">
+                    hola@fabipers.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-purple-600 font-bold">Teléfono:</span>
-                  <a href="tel:+573001234567" className="hover:text-purple-600 font-medium">
-                    +57 300 123 4567
+                  <a href="tel:+573502617242" className="hover:text-purple-600 font-medium">
+                    +57 350 261 7242
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
@@ -257,7 +257,7 @@ export default function BlogPostPage({ params }: Props) {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-purple-600 font-bold">Horarios:</span>
-                  <span className="font-light">Lunes a Viernes, 8:00 AM - 6:00 PM</span>
+                  <span className="font-light">Lunes a Viernes, 9:00 AM - 4:00 PM</span>
                 </div>
               </div>
             </div>

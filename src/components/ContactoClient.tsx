@@ -80,8 +80,8 @@ export default function ContactoClient() {
                 <svg className="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:contacto@digitalmads.net" className="font-semibold text-[#0F172A] hover:text-purple-600 transition-colors">
-                  contacto@digitalmads.net
+                <a href="mailto:hola@fabipers.com" className="font-semibold text-[#0F172A] hover:text-purple-600 transition-colors">
+                  hola@fabipers.com
                 </a>
               </div>
 
@@ -96,7 +96,7 @@ export default function ContactoClient() {
 
             <div className="pt-4">
               <a
-                href="https://wa.me/573001234567"
+                href="https://wa.me/573502617242"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-700 font-semibold text-sm transition-all duration-300 shadow-sm"
@@ -162,7 +162,7 @@ export default function ContactoClient() {
                       id="phone"
                       name="phone"
                       required
-                      placeholder="Ej. +57 300 123 4567"
+                      placeholder="Ej. +57 350 261 7242"
                       className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] placeholder-gray-400 transition-colors"
                     />
                   </div>

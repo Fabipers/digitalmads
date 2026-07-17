@@ -484,7 +484,7 @@ export default function HomeClient() {
                       id="phone"
                       name="phone"
                       required
-                      placeholder="Ej. +57 300 123 4567"
+                      placeholder="Ej. +57 350 261 7242"
                       className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] placeholder-gray-400 transition-colors"
                     />
                   </div>
