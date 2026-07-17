@@ -108,7 +108,7 @@ export default function Header() {
           <a href="/bogota" className="px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 hover:bg-cyan-100 text-cyan-700 hover:text-cyan-800 transition-colors text-xs font-semibold">
             IA en Bogotá
           </a>
-          <a href="/#casos" className="hover:text-[#0F172A] transition-colors">Blog</a>
+          <a href="/blog" className="hover:text-[#0F172A] transition-colors">Blog</a>
         </nav>
 
         <div className="hidden md:flex items-center">
@@ -194,7 +194,7 @@ export default function Header() {
           <a href="/bogota" onClick={() => setMobileMenuOpen(false)} className="py-2 text-cyan-600 hover:text-cyan-700 text-lg font-semibold border-b border-gray-100">
             IA en Bogotá
           </a>
-          <a href="/#casos" onClick={() => setMobileMenuOpen(false)} className="py-2 text-[#475569] hover:text-[#0F172A] text-lg font-medium border-b border-gray-100">
+          <a href="/blog" onClick={() => setMobileMenuOpen(false)} className="py-2 text-[#475569] hover:text-[#0F172A] text-lg font-medium border-b border-gray-100">
             Blog
           </a>
           
