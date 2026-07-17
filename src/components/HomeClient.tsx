@@ -641,7 +641,7 @@ export default function HomeClient() {
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/5 bg-black/40">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-500 text-sm mb-8">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-gray-500 text-sm mb-8">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center font-display font-bold text-xs text-white">
@@ -661,6 +661,24 @@ export default function HomeClient() {
             <ul className="space-y-1.5 text-xs">
               <li><a href="/servicios/auditoria-ia" className="hover:text-white transition-colors">Auditorías de IA</a></li>
               <li><a href="/servicios/consultoria-ia" className="hover:text-white transition-colors">Consultoría Estratégica</a></li>
+              <li><a href="/servicios/desarrollo-llm" className="hover:text-white transition-colors">Desarrollo LLM</a></li>
+            </ul>
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-xs uppercase font-bold text-gray-400 tracking-wider">Integraciones</span>
+            <ul className="space-y-1.5 text-xs">
+              <li><a href="/integraciones/crm" className="hover:text-white transition-colors">Integración CRM</a></li>
+              <li><a href="/integraciones/whatsapp" className="hover:text-white transition-colors">Agentes de WhatsApp</a></li>
+            </ul>
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-xs uppercase font-bold text-gray-400 tracking-wider">Industrias</span>
+            <ul className="space-y-1.5 text-xs">
+              <li><a href="/industrias/ecommerce" className="hover:text-white transition-colors">E-commerce</a></li>
+              <li><a href="/industrias/fintech" className="hover:text-white transition-colors">Fintech</a></li>
+              <li><a href="/industrias/salud" className="hover:text-white transition-colors">Salud</a></li>
             </ul>
           </div>
 
