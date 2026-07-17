@@ -76,67 +76,61 @@ export default function ConsultoriaClient() {
 
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Asymmetric Left-aligned + specs card in right col) */}
       <section className="relative pt-20 pb-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
-            Consultoría Estratégica B2B
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-            Consultoría Estratégica de <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Inteligencia Artificial
-            </span>
-          </h1>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 text-left relative z-10">
+          {/* Left Column (60% width) */}
+          <div className="w-full lg:w-[60%] space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
+              Consultoría Estratégica B2B
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
+              Consultoría Estratégica de <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
+                Inteligencia Artificial
+              </span>
+            </h1>
 
-          <p className="text-lg md:text-xl text-[#475569] max-w-2xl mx-auto leading-relaxed font-light">
-            Estructuramos la arquitectura e integración técnica idónea para tu empresa, equilibrando coste, velocidad y soberanía de datos.
-          </p>
-        </div>
-      </section>
-
-      {/* Model Selection Tool Section */}
-      <section className="py-12 max-w-5xl mx-auto px-6">
-        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 shadow-sm space-y-8">
-          <div className="space-y-3 text-center">
-            <h3 className="text-2xl font-display font-bold text-[#0F172A]">Ecosistema de Modelos Seleccionables</h3>
-            <p className="text-sm text-[#475569] font-light max-w-xl mx-auto">
-              Compara los diferentes modelos para determinar cuál es la solución estratégica óptima para tu organización.
+            <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-light">
+              Estructuramos la arquitectura e integración técnica idónea para tu empresa, equilibrando coste, velocidad y soberanía de datos.
             </p>
           </div>
 
-          <div className="flex justify-center gap-4">
-            {Object.keys(modelSpecs).map((key) => (
-              <button
-                key={key}
-                onClick={() => setSelectedModel(key)}
-                className={`px-5 py-2.5 rounded-xl border text-sm font-medium transition-all duration-300 ${
-                  selectedModel === key
-                    ? "bg-purple-50 border-purple-200 text-purple-700 shadow-sm"
-                    : "border-gray-200 hover:border-gray-300 text-[#475569] hover:text-[#0F172A]"
-                }`}
-              >
-                {key === "gpt4" ? "GPT-4" : key === "claude" ? "Claude 3.5" : "Llama 3 (Local)"}
-              </button>
-            ))}
-          </div>
+          {/* Right Column (40% width) - Interactive model specs card */}
+          <div className="w-full lg:w-[40%] bg-[#F8F9FA] border border-gray-200 rounded-3xl p-6 shadow-sm space-y-6">
+            <div className="flex justify-center gap-2">
+              {Object.keys(modelSpecs).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setSelectedModel(key)}
+                  className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all duration-300 ${
+                    selectedModel === key
+                      ? "bg-purple-50 border-purple-200 text-purple-700 shadow-sm"
+                      : "border-gray-200 text-[#475569] hover:text-[#0F172A]"
+                  }`}
+                >
+                  {key === "gpt4" ? "GPT-4" : key === "claude" ? "Claude" : "Llama 3"}
+                </button>
+              ))}
+            </div>
 
-          <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-sm space-y-4 max-w-xl mx-auto">
-            <h4 className="text-xl font-display font-bold text-[#0F172A]">
-              {modelSpecs[selectedModel as keyof typeof modelSpecs].name}
-            </h4>
-            <p className="text-sm text-[#475569] font-light leading-relaxed">
-              <strong>Fortaleza:</strong> {modelSpecs[selectedModel as keyof typeof modelSpecs].strength}
-            </p>
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100 text-xs">
-              <div>
-                <span className="text-[#94A3B8] font-bold uppercase">Costo Estimado</span>
-                <p className="text-sm font-semibold text-[#0F172A] mt-1">{modelSpecs[selectedModel as keyof typeof modelSpecs].tokenCost}</p>
-              </div>
-              <div>
-                <span className="text-[#94A3B8] font-bold uppercase">Latencia</span>
-                <p className="text-sm font-semibold text-[#0F172A] mt-1">{modelSpecs[selectedModel as keyof typeof modelSpecs].latency}</p>
+            <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm space-y-3">
+              <h4 className="text-base font-display font-bold text-[#0F172A]">
+                {modelSpecs[selectedModel as keyof typeof modelSpecs].name}
+              </h4>
+              <p className="text-xs text-[#475569] leading-relaxed font-light">
+                {modelSpecs[selectedModel as keyof typeof modelSpecs].strength}
+              </p>
+              <div className="grid grid-cols-2 gap-4 pt-3 border-t border-gray-100 text-[10px]">
+                <div>
+                  <span className="text-[#94A3B8] font-bold uppercase">Costo</span>
+                  <p className="text-xs font-semibold text-[#0F172A] mt-0.5">{modelSpecs[selectedModel as keyof typeof modelSpecs].tokenCost}</p>
+                </div>
+                <div>
+                  <span className="text-[#94A3B8] font-bold uppercase">Latencia</span>
+                  <p className="text-xs font-semibold text-[#0F172A] mt-0.5">{modelSpecs[selectedModel as keyof typeof modelSpecs].latency}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -145,7 +139,7 @@ export default function ConsultoriaClient() {
 
       {/* Security Block */}
       <section className="py-12 max-w-4xl mx-auto px-6">
-        <div className="border-l-4 border-cyan-500 bg-cyan-50/50 p-6 rounded-r-2xl space-y-2">
+        <div className="border-l-4 border-cyan-500 bg-cyan-50/50 p-6 rounded-r-2xl space-y-2 text-left">
           <h4 className="text-sm font-bold uppercase tracking-wider text-cyan-800">Gobernanza y Cumplimiento Legal (Habeas Data)</h4>
           <p className="text-xs md:text-sm text-cyan-900 leading-relaxed font-light">
             Garantizamos cumplimiento total con el reglamento internacional de protección de datos (GDPR) y la legislación colombiana (Ley 1581). Diseñamos arquitecturas en las que tus flujos de información empresarial sensible no se comparten jamás con bases de datos de entrenamiento públicas.
@@ -153,17 +147,34 @@ export default function ConsultoriaClient() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
+      {/* CTA / Contact Section (Split Form Layout) */}
       <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200/60 bg-[#F8F9FA]">
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="bg-white border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
-            <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Agenda tu Sesión Estratégica</h3>
-              <p className="text-[#475569] text-sm md:text-base font-light">
-                Completa el formulario y nos contactaremos contigo de inmediato para coordinar la consultoría personalizada.
-              </p>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-left">
+          {/* Column Left: persuasive content & checklist */}
+          <div className="space-y-6">
+            <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Agenda de Asesoría</h2>
+            <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Agenda tu Sesión Estratégica</h3>
+            <p className="text-[#475569] text-base font-light leading-relaxed">
+              Completa el formulario y nos contactaremos contigo de inmediato para coordinar la consultoría personalizada.
+            </p>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Asesoría de arquitectura personalizada.</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Cumplimiento legal colombiano asegurado.</span>
+              </li>
+            </ul>
+          </div>
 
+          {/* Column Right: Compact, styled form card */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
             {formSubmitted ? (
               <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
                 <h4 className="text-lg font-bold text-emerald-800">¡Petición enviada con éxito!</h4>
@@ -172,7 +183,7 @@ export default function ConsultoriaClient() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {isError && (
-                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
+                  <div className="p-4 bg-rose-5 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
                     Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
                   </div>
                 )}

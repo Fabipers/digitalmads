@@ -69,30 +69,51 @@ export default function DesarrolloLlmClient() {
 
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Asymmetric Left-aligned) */}
       <section className="relative pt-20 pb-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
-            Ingeniería de Modelos Avanzada
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-            Desarrollo, Cuantización y <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Fine-Tuning de Modelos de Lenguaje (LLM)
-            </span>
-          </h1>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 text-left relative z-10">
+          {/* Left Column (60% width) */}
+          <div className="w-full lg:w-[60%] space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
+              Ingeniería de Modelos Avanzada
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
+              Desarrollo, Cuantización y <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
+                Fine-Tuning de Modelos de Lenguaje (LLM)
+              </span>
+            </h1>
 
-          <p className="text-lg md:text-xl text-[#475569] max-w-2xl mx-auto leading-relaxed font-light">
-            Entrenamos, adaptamos y desplegamos modelos de código abierto y cerrados especializados en procesar la información corporativa privada de tu organización de forma segura.
-          </p>
+            <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-light">
+              Entrenamos, adaptamos y desplegamos modelos de código abierto y cerrados especializados en procesar la información corporativa privada de tu organización de forma segura.
+            </p>
+          </div>
+
+          {/* Right Column (40% width) - active log check */}
+          <div className="w-full lg:w-[40%] bg-[#F8F9FA] border border-gray-200 rounded-3xl p-6 shadow-sm font-mono text-xs text-[#475569] space-y-4">
+            <div className="flex items-center justify-between border-b border-gray-200 pb-3">
+              <div className="flex gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span className="w-3 h-3 rounded-full bg-green-400"></span>
+              </div>
+              <span className="text-[#94A3B8] font-semibold text-[10px]">llm-fine-tuning-loss</span>
+            </div>
+            <div className="space-y-2">
+              <p className="text-purple-600 font-bold">➜ Epochs completed: 3/3</p>
+              <p className="text-cyan-600 font-bold">➜ Training Loss: 0.142</p>
+              <p className="text-[#0F172A]">➜ Model Quantization: 4-bit AWQ</p>
+              <p className="text-emerald-600 font-bold">➜ Target GPU Temp: 68°C (Stable)</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Main Content Blocks */}
       <section className="py-16 max-w-5xl mx-auto px-6 space-y-12">
         <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
-          <div className="space-y-4">
+          <div className="space-y-4 text-left">
             <h2 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A]">
               Soberanía de Datos Completa con Modelos en Servidores Locales
             </h2>
@@ -101,7 +122,7 @@ export default function DesarrolloLlmClient() {
             </p>
           </div>
 
-          <div className="space-y-4 border-t border-gray-200 pt-8">
+          <div className="space-y-4 border-t border-gray-200 pt-8 text-left">
             <h2 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A]">
               Entrenamiento Fino con Datasets Propios y Ajustes a Medida
             </h2>
@@ -111,9 +132,10 @@ export default function DesarrolloLlmClient() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+        {/* Structured Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feat, idx) => (
-            <div key={idx} className="bg-white border border-gray-200 p-6 rounded-2xl space-y-3 shadow-sm">
+            <div key={idx} className="bg-white border border-gray-200 p-6 rounded-2xl space-y-3 shadow-sm text-left">
               <h3 className="text-lg font-display font-bold text-[#0F172A]">{feat.title}</h3>
               <p className="text-[#475569] text-xs md:text-sm leading-relaxed font-light">{feat.desc}</p>
             </div>
@@ -121,17 +143,34 @@ export default function DesarrolloLlmClient() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
-      <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
-            <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Inicia tu Desarrollo LLM</h3>
-              <p className="text-[#475569] text-sm font-light">
-                Completa el formulario y nos contactaremos con un ingeniero senior para analizar la arquitectura ideal de tu modelo a medida.
-              </p>
-            </div>
+      {/* CTA / Contact Section (Split Form Layout) */}
+      <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200 bg-[#F8F9FA]">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-left">
+          {/* Column Left: persuasive content & checklist */}
+          <div className="space-y-6">
+            <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Entrenamiento Seguro</h2>
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Inicia tu Desarrollo LLM</h3>
+            <p className="text-[#475569] text-base font-light leading-relaxed">
+              Completa el formulario y nos contactaremos con un ingeniero senior para analizar la arquitectura ideal de tu modelo a medida.
+            </p>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Evaluación de hardware y coste de GPUs.</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Alineación de privacidad y Ley 1581.</span>
+              </li>
+            </ul>
+          </div>
 
+          {/* Column Right: Compact, styled form card */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
             {formSubmitted ? (
               <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
                 <h4 className="text-lg font-bold text-emerald-800">¡Petición enviada con éxito!</h4>
@@ -140,7 +179,7 @@ export default function DesarrolloLlmClient() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {isError && (
-                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
+                  <div className="p-4 bg-rose-5 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
                     Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
                   </div>
                 )}

@@ -66,10 +66,10 @@ export default function BogotaClient() {
   };
 
   const processSteps = [
-    { step: "01", title: "Auditoría en Bogotá", desc: "Analizamos tus procesos in situ o de manera virtual." },
-    { step: "02", title: "Prototipo en 2 semanas", desc: "Desarrollamos una beta para tu aprobación." },
-    { step: "03", title: "Despliegue Local", desc: "Conexión con servidores cumpliendo la ley colombiana." },
-    { step: "04", title: "Mejora y Soporte", desc: "Mantenimiento presencial o remoto continuo." }
+    { step: "01", title: "Auditoría en Bogotá", desc: "Analizamos tus procesos de negocio in situ o de manera virtual." },
+    { step: "02", title: "Prototipo en 2 semanas", desc: "Desarrollamos una beta funcional para tu aprobación." },
+    { step: "03", title: "Despliegue Local", desc: "Conexión con servidores cumpliendo la ley colombiana (Ley 1581)." },
+    { step: "04", title: "Mejora y Soporte", desc: "Monitoreo y optimización técnica continua de tus agentes de IA." }
   ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -117,51 +117,29 @@ export default function BogotaClient() {
 
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Asymmetric Left-aligned) */}
       <section className="relative pt-20 pb-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
-            Consultoría de IA en Bogotá
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-            Optimización y Consultoría de <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Inteligencia Artificial en Bogotá
-            </span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-[#475569] max-w-2xl mx-auto leading-relaxed font-light">
-            Ayudamos a startups y grandes corporaciones de Bogotá a automatizar sus operaciones mediante flujos locales seguros con cumplimiento de la Ley 1581 (Habeas Data).
-          </p>
-        </div>
-      </section>
-
-      {/* Terminal Grid Section */}
-      <section className="py-12 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 shadow-sm">
-            <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-4">
-              Contexto Tecnológico de Bogotá
-            </h3>
-            <p className="text-[#475569] leading-relaxed font-light mb-6">
-              Bogotá se ha consolidado como el principal centro de innovación tecnológica del país. Sin embargo, el aumento de la competencia obliga a las empresas locales a buscar eficiencias operativas reales. Implementamos arquitecturas de IA dedicadas en la capital que aceleran los procesos repetitivos de tu negocio y reducen los tiempos de respuesta comerciales de forma dramática.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white border border-gray-200 p-6 rounded-2xl">
-                <span className="text-xs text-[#94A3B8] font-bold uppercase">Soporte Express</span>
-                <p className="text-sm font-semibold text-[#0F172A] mt-2">Automatización de mensajería para toda Cundinamarca.</p>
-              </div>
-              <div className="bg-white border border-gray-200 p-6 rounded-2xl">
-                <span className="text-xs text-[#94A3B8] font-bold uppercase">Privacidad Total</span>
-                <p className="text-sm font-semibold text-[#0F172A] mt-2">LLMs privados instalados localmente o en tu nube corporativa.</p>
-              </div>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 text-left relative z-10">
+          {/* Left Column (60% width) */}
+          <div className="w-full lg:w-[60%] space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
+              Consultoría de IA en Bogotá
             </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
+              Optimización y Consultoría de <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
+                Inteligencia Artificial en Bogotá
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-light">
+              Ayudamos a startups y grandes corporaciones de Bogotá a automatizar sus operaciones mediante flujos locales seguros con cumplimiento de la Ley 1581 (Habeas Data).
+            </p>
           </div>
 
-          {/* Terminal UI (Light theme) */}
-          <div className="bg-[#1e1e24] text-gray-300 font-mono text-xs rounded-3xl p-6 shadow-lg border border-gray-800 flex flex-col justify-between">
+          {/* Right Column (40% width) - active terminal check */}
+          <div className="w-full lg:w-[40%] bg-[#1e1e24] text-gray-300 font-mono text-xs rounded-3xl p-6 shadow-lg border border-gray-800 flex flex-col justify-between min-h-[220px]">
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-gray-700 pb-3">
                 <div className="flex gap-1.5">
@@ -169,7 +147,7 @@ export default function BogotaClient() {
                   <span className="w-3 h-3 rounded-full bg-amber-500"></span>
                   <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
                 </div>
-                <span className="text-gray-500">terminal@digitalmads.co</span>
+                <span className="text-gray-500 text-[10px]">terminal@digitalmads.co</span>
               </div>
               
               <div className="space-y-2">
@@ -187,9 +165,28 @@ export default function BogotaClient() {
                 </div>
               </div>
             </div>
-            
-            <div className="pt-8 text-gray-500 text-[10px]">
-              Waiting for enquiries from Bogotá enterprises...
+          </div>
+        </div>
+      </section>
+
+      {/* Context Grid Section */}
+      <section className="py-12 max-w-7xl mx-auto px-6">
+        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 shadow-sm">
+          <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-4">
+            Contexto Tecnológico de Bogotá
+          </h3>
+          <p className="text-[#475569] leading-relaxed font-light mb-6">
+            Bogotá se ha consolidado como el principal centro de innovación tecnológica del país. Sin embargo, el aumento de la competencia obliga a las empresas locales a buscar eficiencias operativas reales. Implementamos arquitecturas de IA dedicadas en la capital que aceleran los procesos repetitivos de tu negocio y reducen los tiempos de respuesta comerciales de forma dramática.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white border border-gray-200 p-6 rounded-2xl">
+              <span className="text-xs text-[#94A3B8] font-bold uppercase">Soporte Express</span>
+              <p className="text-sm font-semibold text-[#0F172A] mt-2">Automatización de mensajería para toda Cundinamarca.</p>
+            </div>
+            <div className="bg-white border border-gray-200 p-6 rounded-2xl">
+              <span className="text-xs text-[#94A3B8] font-bold uppercase">Privacidad Total</span>
+              <p className="text-sm font-semibold text-[#0F172A] mt-2">LLMs privados instalados localmente o en tu nube corporativa.</p>
             </div>
           </div>
         </div>
@@ -198,7 +195,7 @@ export default function BogotaClient() {
       {/* Local Context Section */}
       <section className="py-24 max-w-7xl mx-auto px-6 border-t border-gray-200/60">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-6">
+          <div className="space-y-6 text-left">
             <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Optimización Operativa Bogotá</h2>
             <h3 className="text-3xl md:text-5xl font-display font-bold leading-tight text-[#0F172A]">Reducción de Costos y Mayor Eficiencia en la Capital</h3>
             <p className="text-[#475569] leading-relaxed text-sm md:text-base font-light">
@@ -227,7 +224,7 @@ export default function BogotaClient() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, idx) => (
-            <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-8 relative overflow-hidden group shadow-sm">
+            <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-8 relative overflow-hidden group shadow-sm text-left">
               <div className="w-14 h-14 rounded-xl bg-[#F8F9FA] flex items-center justify-center mb-6 border border-gray-100">
                 {service.icon}
               </div>
@@ -269,7 +266,7 @@ export default function BogotaClient() {
 
           {/* Tab Content */}
           <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 lg:p-12 flex flex-col lg:flex-row items-center gap-12 shadow-sm">
-            <div className="flex-1 space-y-6">
+            <div className="flex-1 space-y-6 text-left">
               <h4 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A]">
                 {caseStudies[activeTab as keyof typeof caseStudies].title}
               </h4>
@@ -298,17 +295,58 @@ export default function BogotaClient() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
-      <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200/60 bg-[#F8F9FA]">
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="bg-white border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
-            <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Impulsa tu Empresa en Bogotá</h3>
-              <p className="text-[#475569] text-sm md:text-base font-light">
-                Completa el formulario y uno de nuestros ingenieros senior en Bogotá agendará una sesión técnica presencial o virtual.
+      {/* Process Section (PROCESO TECNICO Structured Grid layout) */}
+      <section id="proceso" className="py-24 max-w-7xl mx-auto px-6 border-t border-gray-200/60 bg-[#F8F9FA]">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Metodología Local</h2>
+          <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">¿Cómo Trabajamos en Bogotá?</h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {processSteps.map((step, idx) => (
+            <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-8 relative shadow-sm hover:shadow-md transition-shadow text-left">
+              <span className="absolute top-6 right-8 text-2xl font-display font-extrabold text-[#E2E8F0] tracking-tight">
+                {step.step}
+              </span>
+              <h4 className="text-lg md:text-xl font-display font-bold text-[#0F172A] mb-3 pr-8">
+                {step.title}
+              </h4>
+              <p className="text-[#475569] text-sm leading-relaxed font-light">
+                {step.desc}
               </p>
             </div>
+          ))}
+        </div>
+      </section>
 
+      {/* CTA / Contact Section (Split Form Layout) */}
+      <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200/60 bg-white">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-left">
+          {/* Column Left: persuasive content & checklist */}
+          <div className="space-y-6">
+            <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Contacto Bogotá</h2>
+            <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Impulsa tu Empresa en Bogotá</h3>
+            <p className="text-[#475569] text-base font-light leading-relaxed">
+              Completa el formulario y uno de nuestros ingenieros senior en Bogotá agendará una sesión técnica presencial o virtual.
+            </p>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Diagnóstico presencial o virtual.</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Cumplimiento legal colombiano (Ley 1581) asegurado.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column Right: Compact, styled form card */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
             {formSubmitted ? (
               <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
                 <h4 className="text-lg font-bold text-emerald-800">¡Petición enviada con éxito!</h4>
@@ -317,7 +355,7 @@ export default function BogotaClient() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {isError && (
-                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
+                  <div className="p-4 bg-rose-5 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
                     Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
                   </div>
                 )}
@@ -387,7 +425,7 @@ export default function BogotaClient() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-sm transition-all duration-300 disabled:opacity-50"
                 >
                   {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
                 </button>

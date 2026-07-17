@@ -69,27 +69,48 @@ export default function EcommerceClient() {
 
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Asymmetric Left-aligned) */}
       <section className="relative pt-20 pb-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
-            E-commerce & Retail Vertical
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-            Inteligencia Artificial para <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">E-commerce, Retail y Ventas Digitales</span>
-          </h1>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 text-left relative z-10">
+          {/* Left Column (60% width) */}
+          <div className="w-full lg:w-[60%] space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
+              E-commerce & Retail Vertical
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
+              Inteligencia Artificial para <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">E-commerce, Retail y Ventas Digitales</span>
+            </h1>
 
-          <p className="text-lg md:text-xl text-[#475569] max-w-2xl mx-auto leading-relaxed font-light">
-            Aumenta tu conversión, maximiza el ticket promedio y optimiza tus procesos logísticos con integraciones avanzadas de agentes de recomendación y bases de datos vectoriales.
-          </p>
+            <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-light">
+              Aumenta tu conversión, maximiza el ticket promedio y optimiza tus procesos logísticos con integraciones avanzadas de agentes de recomendación y bases de datos vectoriales.
+            </p>
+          </div>
+
+          {/* Right Column (40% width) - Conversion metrics log card */}
+          <div className="w-full lg:w-[40%] bg-[#F8F9FA] border border-gray-200 rounded-3xl p-6 shadow-sm font-mono text-xs text-[#475569] space-y-4">
+            <div className="flex items-center justify-between border-b border-gray-200 pb-3">
+              <div className="flex gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span className="w-3 h-3 rounded-full bg-green-400"></span>
+              </div>
+              <span className="text-[#94A3B8] font-semibold text-[10px]">ecommerce-metrics-log</span>
+            </div>
+            <div className="space-y-2">
+              <p className="text-purple-600 font-bold">➜ Conversion Boost: +35%</p>
+              <p className="text-cyan-600 font-bold">➜ Abandoned Cart Recovery: 24%</p>
+              <p className="text-[#0F172A]">➜ API Catalog Sync: 100% (OK)</p>
+              <p className="text-emerald-600 font-bold">➜ Average Recommendation Load: 120ms</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Main Content Blocks */}
       <section className="py-16 max-w-5xl mx-auto px-6 space-y-12">
         <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
-          <div className="space-y-4">
+          <div className="space-y-4 text-left">
             <h2 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A]">
               Recuperación Inteligente de Carritos Abandonados
             </h2>
@@ -98,7 +119,7 @@ export default function EcommerceClient() {
             </p>
           </div>
 
-          <div className="space-y-4 border-t border-gray-200 pt-8">
+          <div className="space-y-4 border-t border-gray-200 pt-8 text-left">
             <h2 className="text-2xl md:text-3xl font-display font-bold text-[#0F172A]">
               Personalización y Búsqueda Semántica con Embeddings
             </h2>
@@ -108,7 +129,7 @@ export default function EcommerceClient() {
           </div>
         </div>
 
-        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-6 shadow-sm">
+        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-6 shadow-sm text-left">
           <h3 className="text-xl font-display font-bold text-[#0F172A]">Entregables Clave de la Solución</h3>
           <ul className="space-y-3 text-sm text-[#475569] font-light list-disc pl-5">
             <li><strong>Bots de soporte conversacional:</strong> Agentes autónomos para responder sobre stock, envíos y devoluciones.</li>
@@ -117,9 +138,10 @@ export default function EcommerceClient() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+        {/* Structured Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service, idx) => (
-            <div key={idx} className="bg-white border border-gray-200 p-6 rounded-2xl space-y-3 shadow-sm">
+            <div key={idx} className="bg-white border border-gray-200 p-6 rounded-2xl space-y-3 shadow-sm text-left">
               <h3 className="text-lg font-display font-bold text-[#0F172A]">{service.title}</h3>
               <p className="text-[#475569] text-xs md:text-sm leading-relaxed font-light">{service.desc}</p>
             </div>
@@ -127,17 +149,34 @@ export default function EcommerceClient() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
-      <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
-            <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Impulsa tu Tienda Online</h3>
-              <p className="text-[#475569] text-sm font-light">
-                Completa el formulario corporativo y agendaremos una llamada técnica de análisis de conversión con IA.
-              </p>
-            </div>
+      {/* CTA / Contact Section (Split Form Layout) */}
+      <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200 bg-[#F8F9FA]">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-left">
+          {/* Column Left: persuasive content & checklist */}
+          <div className="space-y-6">
+            <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Análisis de ROI</h2>
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Impulsa tu Tienda Online</h3>
+            <p className="text-[#475569] text-base font-light leading-relaxed">
+              Completa el formulario corporativo y agendaremos una llamada técnica de análisis de conversión con IA sin costo.
+            </p>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Auditoría de tasa de conversión gratuita.</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Plano técnico de recomendadores de catálogo.</span>
+              </li>
+            </ul>
+          </div>
 
+          {/* Column Right: Compact, styled form card */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
             {formSubmitted ? (
               <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
                 <h4 className="text-lg font-bold text-emerald-800">¡Petición enviada con éxito!</h4>
@@ -146,7 +185,7 @@ export default function EcommerceClient() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {isError && (
-                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
+                  <div className="p-4 bg-rose-5 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
                     Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
                   </div>
                 )}

@@ -28,10 +28,10 @@ export default function AuditoriaClient() {
   }, [scannerActive]);
 
   const auditSteps = [
-    { title: "Mapeo de Procesos", desc: "Identificamos cuellos de botella manuales en tu flujo empresarial." },
-    { title: "Evaluación de Seguridad", desc: "Analizamos la soberanía y cumplimiento de datos (Ley 1581)." },
-    { title: "Factibilidad de IA", desc: "Determinamos qué modelos (GPT-4, Claude, Llama 3) ofrecen mayor ROI." },
-    { title: "Diseño de Arquitectura", desc: "Entregamos un plano técnico estructurado listo para implementación." }
+    { step: "01", title: "Mapeo de Procesos", desc: "Identificamos cuellos de botella manuales en tu flujo empresarial." },
+    { step: "02", title: "Evaluación de Seguridad", desc: "Analizamos la soberanía y cumplimiento de datos (Ley 1581)." },
+    { step: "03", title: "Factibilidad de IA", desc: "Determinamos qué modelos (GPT-4, Claude, Llama 3) ofrecen mayor ROI." },
+    { step: "04", title: "Diseño de Arquitectura", desc: "Entregamos un plano técnico estructurado listo para implementación." }
   ];
 
   const startScan = () => {
@@ -84,85 +84,83 @@ export default function AuditoriaClient() {
 
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Asymmetric Left-aligned + Simulator in right col) */}
       <section className="relative pt-20 pb-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
-            Diagnóstico de Infraestructura
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-            Auditoría de Inteligencia Artificial <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              y Viabilidad Tecnológica
-            </span>
-          </h1>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 text-left relative z-10">
+          {/* Left Column (60% width) */}
+          <div className="w-full lg:w-[60%] space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
+              Diagnóstico de Infraestructura
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
+              Auditoría de Inteligencia Artificial <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
+                y Viabilidad Tecnológica
+              </span>
+            </h1>
 
-          <p className="text-lg md:text-xl text-[#475569] max-w-2xl mx-auto leading-relaxed font-light">
-            Evaluamos la factibilidad técnica y la seguridad de tus sistemas empresariales para diseñar una hoja de ruta de implementación estructurada.
-          </p>
-        </div>
-      </section>
-
-      {/* Simulator Section (Tech Light theme) */}
-      <section className="py-12 max-w-5xl mx-auto px-6">
-        <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 shadow-sm space-y-8">
-          <div className="space-y-3 text-center">
-            <h3 className="text-2xl font-display font-bold text-[#0F172A]">Simulador de Diagnóstico Técnico</h3>
-            <p className="text-sm text-[#475569] font-light max-w-xl mx-auto">
-              Haz clic abajo para simular un escaneo rápido de factibilidad en tu dominio corporativo.
+            <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-light">
+              Evaluamos la factibilidad técnica y la seguridad de tus sistemas empresariales para diseñar una hoja de ruta de implementación estructurada.
             </p>
-          </div>
 
-          <div className="flex flex-col items-center gap-6">
             <button
               onClick={startScan}
               disabled={scannerActive}
-              className="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium shadow-sm transition-all duration-300 disabled:opacity-50"
+              className="px-6 py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-sm transition-all duration-300 disabled:opacity-50"
             >
               {scannerActive ? "Escaneando..." : "Iniciar Simulación de Diagnóstico"}
             </button>
+          </div>
 
-            {/* Progress Bar (Light theme) */}
-            <div className="w-full max-w-xl bg-gray-200 h-4 rounded-full overflow-hidden relative border border-gray-300">
-              <div
-                className="bg-gradient-to-r from-purple-600 to-cyan-500 h-full transition-all duration-75"
-                style={{ width: `${progress}%` }}
-              />
-              <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-700">
-                {progress}%
-              </span>
+          {/* Right Column (40% width) - Interactive simulator console */}
+          <div className="w-full lg:w-[40%] bg-[#1e1e24] text-gray-300 font-mono text-xs rounded-3xl p-6 shadow-lg border border-gray-800 space-y-4">
+            <div className="flex items-center justify-between border-b border-gray-700 pb-3">
+              <div className="flex gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-rose-500"></span>
+                <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
+              </div>
+              <span className="text-gray-500 text-[10px]">diagnostics-console</span>
             </div>
 
-            {/* Scanner Output Console */}
-            <div className="w-full max-w-xl bg-[#1e1e24] text-gray-300 font-mono text-xs rounded-2xl p-6 shadow-lg border border-gray-800 space-y-2">
-              <p className="text-gray-500">{"// Consola de Diagnóstico Simulada //"}</p>
-              {progress > 0 && <p className="text-cyan-400">➜ [INFO] Iniciando escaneo de puertos de APIs locales...</p>}
-              {progress > 25 && <p className="text-cyan-400">➜ [OK] Conectividad a bases de datos PostgreSQL mapeada.</p>}
-              {progress > 50 && <p className="text-purple-400">➜ [WARN] Se detectó un cuello de botella manual en soporte técnico.</p>}
-              {progress > 75 && <p className="text-cyan-400">➜ [OK] Cumplimiento normativo (Ley 1581) verificado de forma síncrona.</p>}
+            {/* Progress Bar (Light theme inline style matching console) */}
+            <div className="w-full bg-gray-700 h-3 rounded-full overflow-hidden relative">
+              <div
+                className="bg-gradient-to-r from-purple-500 to-cyan-400 h-full transition-all duration-75"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+
+            <div className="space-y-1.5 leading-relaxed text-[11px] min-h-[120px]">
+              <p className="text-gray-500">{"// Output log //"}</p>
+              {progress > 0 && <p className="text-cyan-400">➜ [INFO] Scanning active API ports...</p>}
+              {progress > 40 && <p className="text-purple-400">➜ [WARN] Manual bottlenecks detected in support flows.</p>}
               {progress === 100 && (
-                <p className="text-emerald-400 font-bold">➜ [SUCCESS] Diagnóstico completo. Tu infraestructura es viable para Agentes RAG.</p>
+                <p className="text-emerald-400 font-bold">➜ [SUCCESS] Diagnosis completed. Ready for agent deployment.</p>
               )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Audit Steps Section */}
+      {/* Audit Steps Section (PROCESO TECNICO Structured Grid layout) */}
       <section className="py-24 max-w-7xl mx-auto px-6 border-t border-gray-200/60 bg-[#F8F9FA]">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Proceso Técnico</h2>
           <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Fases de Nuestra Auditoría</h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {auditSteps.map((step, idx) => (
-            <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-6 relative shadow-sm">
-              <h4 className="text-lg md:text-xl font-display font-bold text-[#0F172A] mb-2">
+            <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-8 relative shadow-sm text-left">
+              <span className="absolute top-6 right-8 text-2xl font-display font-extrabold text-[#E2E8F0] tracking-tight">
+                {step.step}
+              </span>
+              <h4 className="text-lg md:text-xl font-display font-bold text-[#0F172A] mb-3 pr-8">
                 {step.title}
               </h4>
-              <p className="text-[#475569] text-xs md:text-sm leading-relaxed font-light">
+              <p className="text-[#475569] text-sm leading-relaxed font-light">
                 {step.desc}
               </p>
             </div>
@@ -170,17 +168,34 @@ export default function AuditoriaClient() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
+      {/* CTA / Contact Section (Split Form Layout) */}
       <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200/60 bg-white">
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-sm">
-            <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">Solicita tu Auditoría Técnica</h3>
-              <p className="text-[#475569] text-sm md:text-base font-light">
-                Completa el formulario y uno de nuestros ingenieros agendará la llamada técnica de diagnóstico sin costo.
-              </p>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-left">
+          {/* Column Left: persuasive content & checklist */}
+          <div className="space-y-6">
+            <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Agenda de Diagnóstico</h2>
+            <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Solicita tu Auditoría Técnica</h3>
+            <p className="text-[#475569] text-base font-light leading-relaxed">
+              Completa el formulario y uno de nuestros ingenieros agendará la llamada técnica de diagnóstico sin costo.
+            </p>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Análisis de procesos 100% gratuito.</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Hoja de ruta e informe técnico estructurado de regalo.</span>
+              </li>
+            </ul>
+          </div>
 
+          {/* Column Right: Compact, styled form card */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
             {formSubmitted ? (
               <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
                 <h4 className="text-lg font-bold text-emerald-800">¡Petición enviada con éxito!</h4>
@@ -189,7 +204,7 @@ export default function AuditoriaClient() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {isError && (
-                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
+                  <div className="p-4 bg-rose-5 border border-rose-200 rounded-xl text-center text-rose-800 text-xs font-medium">
                     Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.
                   </div>
                 )}

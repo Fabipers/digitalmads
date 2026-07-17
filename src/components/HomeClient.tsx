@@ -122,7 +122,7 @@ export default function HomeClient() {
     },
     {
       question: "¿Cuánto tiempo toma ver los primeros resultados?",
-      answer: "Generalmente entregamos prtotipos funcionales y medibles (MVPs) en un plazo de 2 a 3 semanas. La integración completa de sistemas empresariales suele durar entre 6 y 10 semanas dependiendo de la complejidad.",
+      answer: "Generalmente entregamos prototipos funcionales y medibles (MVPs) en un plazo de 2 a 3 semanas. La integración completa de sistemas empresariales suele durar entre 6 y 10 semanas dependiendo de la complejidad.",
     },
     {
       question: "¿Se requiere un equipo de desarrollo propio para trabajar con vosotros?",
@@ -175,37 +175,58 @@ export default function HomeClient() {
 
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Asymmetric 2-Column layout) */}
       <section className="relative pt-20 pb-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
-            Consultoría de IA en Colombia
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 text-left relative z-10">
+          {/* Column Left (60% Width) */}
+          <div className="w-full lg:w-[60%] space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
+              Consultoría de IA en Colombia
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6.5xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
+              Impulsamos tu negocio con <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
+                Inteligencia Artificial Estratégica
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-light">
+              Creamos agentes autónomos, optimizamos tus bases de datos con RAG vectoriales e integramos tus herramientas mediante automatizaciones avanzadas de flujos de trabajo.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <a
+                href="#contacto"
+                className="px-8 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-center font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                Agendar Auditoría Gratuita
+              </a>
+              <a
+                href="#servicios"
+                className="px-8 py-4 rounded-xl bg-[#F8F9FA] hover:bg-gray-100 text-[#0F172A] text-center font-semibold border border-gray-200 shadow-sm transition-all duration-300"
+              >
+                Explorar Servicios
+              </a>
+            </div>
           </div>
-          
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-            Impulsamos tu negocio con <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Inteligencia Artificial Estratégica
-            </span>
-          </h1>
 
-          <p className="text-lg md:text-xl text-[#475569] max-w-3xl mx-auto leading-relaxed font-light">
-            Creamos agentes autónomos, optimizamos tus bases de datos con RAG vectoriales e integramos tus herramientas mediante automatizaciones avanzadas de flujos de trabajo.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <a
-              href="#contacto"
-              className="px-8 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
-            >
-              Agendar Auditoría Gratuita
-            </a>
-            <a
-              href="#servicios"
-              className="px-8 py-4 rounded-xl bg-[#F8F9FA] hover:bg-gray-100 text-[#0F172A] font-semibold border border-gray-200 shadow-sm transition-all duration-300"
-            >
-              Explorar Servicios
-            </a>
+          {/* Column Right (40% Width) - Tech system status card */}
+          <div className="w-full lg:w-[40%] bg-[#F8F9FA] border border-gray-200 rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.01)] font-mono text-xs text-[#475569] space-y-4">
+            <div className="flex items-center justify-between border-b border-gray-200 pb-3">
+              <div className="flex gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span className="w-3 h-3 rounded-full bg-green-400"></span>
+              </div>
+              <span className="text-[#94A3B8] font-semibold text-[10px]">digitalmads-sys-status</span>
+            </div>
+            <div className="space-y-2">
+              <p className="text-purple-600 font-bold">➜ Active Agents: 14</p>
+              <p className="text-cyan-600 font-bold">➜ Optimization Rate: +42%</p>
+              <p className="text-[#0F172A]">➜ Compliance: Ley 1581 (OK)</p>
+              <p className="text-emerald-600 font-bold">➜ API Response Latency: 1.8s</p>
+            </div>
           </div>
         </div>
       </section>
@@ -318,23 +339,23 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Process Section (Structured grid with top-right index) */}
       <section id="proceso" className="py-24 max-w-7xl mx-auto px-6 border-t border-gray-200/60 bg-[#F8F9FA]">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Metodología de Trabajo</h2>
           <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Nuestra Ruta de Integración</h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {processSteps.map((step, idx) => (
-            <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-6 relative shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-5xl font-display font-extrabold text-[#E2E8F0] mb-4">
+            <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-8 relative shadow-sm hover:shadow-md transition-shadow text-left">
+              <span className="absolute top-6 right-8 text-2xl font-display font-extrabold text-[#E2E8F0] tracking-tight">
                 {step.step}
-              </div>
-              <h4 className="text-lg md:text-xl font-display font-bold text-[#0F172A] mb-2">
+              </span>
+              <h4 className="text-lg md:text-xl font-display font-bold text-[#0F172A] mb-3 pr-8">
                 {step.title}
               </h4>
-              <p className="text-[#475569] text-xs md:text-sm leading-relaxed font-light">
+              <p className="text-[#475569] text-sm leading-relaxed font-light">
                 {step.desc}
               </p>
             </div>
@@ -380,17 +401,40 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* CTA / Contact Section */}
+      {/* CTA / Contact Section (Split Form Layout) */}
       <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200/60 bg-[#F8F9FA]">
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="bg-white border border-gray-200 rounded-3xl p-8 md:p-12 space-y-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
-            <div className="text-center space-y-4">
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">¿Listo para llevar la IA a tu negocio?</h3>
-              <p className="text-[#475569] text-sm md:text-base max-w-xl mx-auto font-light">
-                Completa el formulario y uno de nuestros consultores de arquitectura de IA se pondrá en contacto contigo en menos de 24 horas.
-              </p>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-left">
+          {/* Column Left: persuasive content & checklist */}
+          <div className="space-y-6">
+            <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Diagnóstico y ROI</h2>
+            <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Solicita tu Auditoría Técnica</h3>
+            <p className="text-[#475569] text-base font-light leading-relaxed">
+              Trabaja en conjunto con nuestros consultores expertos para identificar ineficiencias críticas y diseñar una solución viable a tu medida en menos de 24 horas.
+            </p>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Diagnóstico de infraestructura 100% gratuito.</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Evaluación de viabilidad y ROI estimado.</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-[#475569]">
+                <svg className="w-5 h-5 text-purple-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Propuesta técnica de integraciones APIs.</span>
+              </li>
+            </ul>
+          </div>
 
+          {/* Column Right: Compact, styled form card */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
             {formSubmitted ? (
               <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
                 <svg className="w-12 h-12 text-emerald-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -480,7 +524,7 @@ export default function HomeClient() {
                     name="message"
                     rows={4}
                     required
-                    placeholder="Describe brevemente tus necesidades o los cuellos de botella actuales de tu empresa..."
+                    placeholder="Describe brevemente tus necesidades..."
                     className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-purple-500 rounded-xl focus:outline-none text-[#0F172A] placeholder-gray-400 transition-colors resize-none"
                   />
                 </div>
