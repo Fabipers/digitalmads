@@ -40,11 +40,32 @@ async function run() {
     process.exit(1);
   }
 
-  console.log('Staging updated contact information...');
+  // Handle deletions first by removing files from Git index that no longer exist
   const files = walk(dir);
-  console.log(`Found ${files.length} files to check.`);
+  console.log(`Checking git status for all ${files.length} files...`);
+
+  // Stage all current files
   for (const file of files) {
     await git.add({ fs, dir, filepath: file });
+  }
+
+  // Remove deleted files from index
+  // We deleted src/data/posts.ts and the previous helper scripts
+  const deletedFiles = [
+    'src/data/posts.ts',
+    'update-placeholders.js',
+    'git-push-new-info.js',
+    'git-push-blog-layout.js',
+    'git-push-blog-link.js',
+    'git-push-contact.js'
+  ];
+  for (const df of deletedFiles) {
+    try {
+      await git.remove({ fs, dir, filepath: df });
+      console.log(`Removed deleted file from Git index: ${df}`);
+    } catch (e) {
+      // Ignore if file was not tracked
+    }
   }
 
   console.log('Committing changes...');
@@ -55,7 +76,7 @@ async function run() {
       name: 'Fabian Perez',
       email: 'fabianperez@users.noreply.github.com'
     },
-    message: 'fix: update company telephone, email, schedule, and form placeholders across all client routes'
+    message: 'feat: migrate blog engine to local dynamic MDX architecture using node file system'
   });
 
   console.log('Pushing updates to main branch...');

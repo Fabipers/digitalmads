@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import { blogPosts } from "../../../data/posts";
+import { getAllPosts, getPostBySlug } from "../../../lib/mdx";
 import Link from "next/link";
 
 interface Props {
@@ -12,23 +12,24 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({
+  const posts = getAllPosts();
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+  const post = getPostBySlug(params.slug);
   if (!post) return {};
 
   return {
-    title: `${post.title} | Blog DigitalMads`,
-    description: post.excerpt,
+    title: `${post.metadata.title} | Blog DigitalMads`,
+    description: post.metadata.excerpt,
   };
 }
 
 export default function BlogPostPage({ params }: Props) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+  const post = getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -182,16 +183,16 @@ export default function BlogPostPage({ params }: Props) {
 
           <div className="flex items-center gap-4 text-xs font-semibold text-[#94A3B8]">
             <span className="bg-purple-50 border border-purple-100 px-3 py-1 rounded-full text-purple-700">
-              {post.category}
+              {post.metadata.category}
             </span>
-            <span>{post.readTime} de lectura</span>
+            <span>{post.metadata.readTime} de lectura</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-tight text-[#0F172A]">
-            {post.title}
+            {post.metadata.title}
           </h1>
 
-          <p className="text-gray-500 text-sm font-medium">Publicado el {post.date}</p>
+          <p className="text-gray-500 text-sm font-medium">Publicado el {post.metadata.date}</p>
         </div>
       </section>
 

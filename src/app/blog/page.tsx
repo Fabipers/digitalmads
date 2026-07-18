@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { blogPosts } from "../../data/posts";
+import { getAllPosts } from "../../lib/mdx";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <div className="min-h-screen bg-white text-[#0F172A] relative font-sans">
       {/* Light Mode Fine Grid */}
@@ -37,7 +39,7 @@ export default function BlogPage() {
       {/* Posts List Grid */}
       <section className="py-12 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {blogPosts.map((post) => (
+          {posts.map((post) => (
             <article
               key={post.slug}
               className="bg-[#F8F9FA] border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"

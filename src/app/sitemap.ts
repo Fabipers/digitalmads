@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { blogPosts } from '../data/posts';
+import { getAllPosts } from '../lib/mdx';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://digitalmads.net';
@@ -27,7 +27,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 2. Mapeo Automático y Dinámico de los Posts del Blog
-  const blogRoutes = blogPosts.map((post) => ({
+  const posts = getAllPosts();
+  const blogRoutes = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: post.date, // Usa la fecha del artículo
     changeFrequency: 'monthly' as const,
