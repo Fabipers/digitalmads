@@ -111,7 +111,13 @@ export default function Header() {
           <a href="/blog" className="hover:text-[#0F172A] transition-colors">Blog</a>
         </nav>
 
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="/cotizador"
+            className="px-4 py-2.5 rounded-xl border border-gray-300 hover:border-purple-500 hover:bg-purple-50 text-[#475569] hover:text-purple-700 font-medium text-sm transition-all duration-300"
+          >
+            Simular Presupuesto
+          </a>
           <a
             href="/contacto"
             className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm shadow-sm transition-all duration-300 transform hover:-translate-y-0.5"
@@ -196,6 +202,14 @@ export default function Header() {
           </a>
           <a href="/blog" onClick={() => setMobileMenuOpen(false)} className="py-2 text-[#475569] hover:text-[#0F172A] text-lg font-medium border-b border-gray-100">
             Blog
+          </a>
+          
+          <a
+            href="/cotizador"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-3 mt-4 rounded-xl border border-gray-300 text-center text-[#475569] font-medium text-base hover:bg-purple-50 hover:text-purple-700 transition-colors"
+          >
+            Simular Presupuesto
           </a>
           
           <a
