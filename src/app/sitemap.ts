@@ -9,6 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '',
     '/bogota',
     '/contacto',
+    '/cotizador',
     '/blog',
     '/servicios/auditoria-ia',
     '/servicios/consultoria-ia',
