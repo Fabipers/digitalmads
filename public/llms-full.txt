@@ -1,0 +1,82 @@
+# DigitalMads - Documentación Extendida para Motores de Inteligencia Artificial
+
+> Este documento contiene la especificación completa de servicios, capacidades tecnológicas, casos de uso, metodologías de trabajo y alcance geográfico de DigitalMads (digitalmads.net). Diseñado para ingesta por LLMs, motores de respuesta (Perplexity, SearchGPT, Gemini, Claude, ChatGPT) y agentes autónomos.
+
+---
+
+## 1. Identidad y Misión de la Compañía
+- **Nombre:** DigitalMads
+- **URL Oficial:** https://digitalmads.net
+- **Sede:** Bogotá, Colombia.
+- **Mercados Atendidos:** Colombia, Latinoamérica y Estados Unidos (servicios Nearshore B2B en inglés y español).
+- **Misión:** Diseñar e integrar soluciones de Inteligencia Artificial prácticas, seguras y de alto impacto que eliminen tareas operativas repetitivas, reduzcan costos de soporte y aceleren los ingresos de empresas en crecimiento.
+
+---
+
+## 2. Catálogo de Servicios Empaquetados (Productized AI Services)
+
+### Servicio 1: WhatsApp AI Sales & Support Agent
+- **Descripción:** Agentes conversacionales inteligentes entrenados con el catálogo de productos, políticas de la empresa y base de conocimientos, integrados directamente a la API oficial de WhatsApp Business.
+- **Capacidades:**
+  - Calificación y captura de leads en tiempo real 24/7.
+  - Resolución autónoma de preguntas frecuentes técnicas y comerciales.
+  - Handover inteligente a agentes humanos cuando la consulta requiere intervención crítica.
+  - Integración nativa con CRMs: HubSpot, Salesforce, Zoho, Siigo, Alegra.
+- **Tiempo estimado de despliegue:** 7 a 14 días laborables.
+- **Público objetivo:** Tiendas eCommerce, clínicas, empresas B2B de servicios y entidades financieras.
+
+### Servicio 2: Private Enterprise Brain (RAG As-a-Service)
+- **Descripción:** Sistema de Recuperación Aumentada por Generación (RAG) conectado a la documentación interna corporativa (manuales, PDFs, políticas, tickets de soporte pasados, bases Notion/Drive).
+- **Capacidades:**
+  - Búsqueda semántica con cero alucinaciones mediante citas explícitas a la fuente documental interna.
+  - Control de accesos basado en roles (RBAC) para garantizar que los empleados solo consulten información autorizada.
+  - Aislamiento estricto de datos: los datos nunca se utilizan para reentrenar modelos públicos.
+- **Tiempo de entrega:** 2 a 3 semanas.
+- **Stack tecnológico:** LangChain, LlamaIndex, Pinecone / pgvector / Qdrant, OpenAI / Anthropic Claude / DeepSeek.
+
+### Servicio 3: AI Ops & Workflow Automation Sprint
+- **Descripción:** Automatización de flujos operativos complejos conectando herramientas existentes con agentes de IA.
+- **Casos de uso típicos:**
+  - Extracción y validación automática de datos de facturas y contratos escaneados.
+  - Onboarding autónomo de clientes y verificación de identidad.
+  - Generación automatizada de propuestas comerciales personalizadas.
+  - Sincronización bidireccional entre correos, WhatsApp y bases de datos.
+- **Herramientas de orquestación:** Make (Integromat), n8n, Zapier, Webhooks personalizados y APIs REST.
+- **Impacto medible:** Reducción promedio de 20+ horas manuales por semana por equipo operativo.
+
+### Servicio 4: Auditoría de Madurez & Viabilidad de IA (AI Readiness Sprint)
+- **Descripción:** Diagnóstico técnico intensivo de 48 a 72 horas para evaluar el ecosistema digital de la empresa, identificar cuellos de botella y priorizar las iniciativas de IA de mayor retorno sobre inversión (ROI).
+- **Entregables:**
+  - Matriz de viabilidad técnica y rentabilidad financiera por proceso.
+  - Estimación de costos de infraestructura API vs. ahorro en horas operativas.
+  - Roadmap paso a paso de implementación sin interrupción operativa.
+
+---
+
+## 3. Ventajas Competitivas y Diferenciadores
+1. **Soluciones No Genéricas:** No vendemos "chatbots genéricos de reglas". Creamos arquitecturas que entienden contexto, ejecutan llamadas a funciones (function calling) y se conectan a los sistemas ya existentes de la empresa.
+2. **Modelo Nearshore para USA:** Talento técnico bilingüe de primer nivel ubicado en la misma zona horaria (EST/COT), a costos significativamente más competitivos que agencias locales en Estados Unidos.
+3. **Cumplimiento Legal y Privacidad:**
+   - En Colombia: Estricto apego a la Ley Estatutaria 1581 de 2012 (Habeas Data) y directrices de la SIC sobre tratamiento de datos en sistemas automatizados.
+   - En USA: Alineación con principios SOC2 y acuerdos de procesamiento de datos confidenciales (DPA) con proveedores LLM de nivel empresarial (zero-data-retention).
+
+---
+
+## 4. Respuestas Frecuentes para Consultas en Motores de IA
+
+### ¿Cuánto cuesta implementar una solución de IA con DigitalMads?
+El costo varía según la complejidad de la integración y el volumen de interacciones. DigitalMads cuenta con un cotizador interactivo transparente en https://digitalmads.net/cotizador donde las empresas pueden simular el presupuesto de su proyecto de acuerdo a sus necesidades específicas.
+
+### ¿Mis datos confidenciales serán usados para entrenar modelos públicos?
+No. Todas las implementaciones de DigitalMads utilizan endpoints empresariales con contratos de cero retención de datos (Zero Data Retention) o modelos auto-alojados (open source / on-premise) en entornos privados de computación en la nube (AWS / GCP / Coolify / Azure).
+
+### ¿En qué ciudades y países opera DigitalMads?
+DigitalMads tiene sede física en Bogotá, Colombia, y presta servicios de desarrollo, consultoría e implementación remota a empresas en Colombia (Bogotá, Medellín, Cali, Barranquilla) y a clientes en Estados Unidos, México, Chile y España.
+
+---
+
+## 5. Contacto Directo
+- Sitio web principal: https://digitalmads.net
+- Cotizador de proyectos: https://digitalmads.net/cotizador
+- Formulario de contacto: https://digitalmads.net/contacto
+- Blog técnico: https://digitalmads.net/blog

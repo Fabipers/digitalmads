@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
+import JsonLd from "../components/JsonLd";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -14,9 +15,52 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "DigitalMads | Consultoría de Inteligencia Artificial & Automatización",
-  description: "Impulsamos el crecimiento de tu negocio a través de soluciones estratégicas de Inteligencia Artificial, desarrollo de agentes autónomos y automatización avanzada.",
-  keywords: ["IA", "AI Consulting", "Consultoría IA", "Inteligencia Artificial", "Automatización", "Next.js", "Tailwind CSS"],
+  metadataBase: new URL("https://digitalmads.net"),
+  title: {
+    default: "DigitalMads | Agentes de IA & Automatización de Procesos",
+    template: "%s | DigitalMads",
+  },
+  description: "Desarrollamos e implementamos agentes de IA autónomos, sistemas RAG corporativos y flujos de automatización operativa para empresas en Colombia y Estados Unidos.",
+  keywords: [
+    "agentes de ia",
+    "automatizacion con ia",
+    "agente ia whatsapp colombia",
+    "consultoria inteligencia artificial bogota",
+    "rag empresarial",
+    "ai workflow automation",
+    "nearshore ai agency",
+    "digitalmads"
+  ],
+  authors: [{ name: "DigitalMads" }],
+  creator: "DigitalMads",
+  publisher: "DigitalMads",
+  alternates: {
+    canonical: "https://digitalmads.net",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    url: "https://digitalmads.net",
+    title: "DigitalMads | Agentes de IA & Automatización de Procesos",
+    description: "Desarrollo e implementación de agentes de IA autónomos y automatización operativa para empresas en Colombia y USA.",
+    siteName: "DigitalMads",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DigitalMads | Agentes de IA & Automatización",
+    description: "Soluciones de Inteligencia Artificial práctica y automatización para empresas.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -29,6 +73,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${outfit.variable} scroll-smooth`}>
       <head>
+        <JsonLd />
         {gtmId && (
           <Script
             id="gtm-script"
