@@ -99,6 +99,95 @@ export default function BlogPostPage({ params }: Props) {
         continue;
       }
 
+      // Check for code blocks (```)
+      if (trimmed.startsWith("```")) {
+        if (currentBlock) flushBlock(uniqueIdx++);
+        const codeLines: string[] = [];
+        i++;
+        while (i < lines.length && !lines[i].trim().startsWith("```")) {
+          codeLines.push(lines[i]);
+          i++;
+        }
+        elements.push(
+          <div key={`code-${uniqueIdx++}`} className="my-6 rounded-2xl bg-slate-900 p-4 font-mono text-xs md:text-sm text-slate-100 overflow-x-auto shadow-inner border border-slate-800">
+            <pre>
+              <code>{codeLines.join("\n")}</code>
+            </pre>
+          </div>
+        );
+        continue;
+      }
+
+      // Check for Markdown tables (| ... |)
+      if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
+        if (currentBlock) flushBlock(uniqueIdx++);
+        const tableLines: string[] = [trimmed];
+        while (i + 1 < lines.length && lines[i + 1].trim().startsWith("|") && lines[i + 1].trim().endsWith("|")) {
+          i++;
+          tableLines.push(lines[i].trim());
+        }
+
+        if (tableLines.length >= 2) {
+          const splitRow = (row: string) =>
+            row
+              .slice(1, -1)
+              .split("|")
+              .map((c) => c.trim());
+
+          const headerCells = splitRow(tableLines[0]);
+          // Row 1 is delimiter (| --- | --- |)
+          const bodyRows = tableLines.slice(2).map(splitRow);
+
+          elements.push(
+            <div key={`table-${uniqueIdx++}`} className="my-8 overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
+              <table className="w-full text-left border-collapse text-xs md:text-sm">
+                <thead>
+                  <tr className="bg-gray-50/80 border-b border-gray-200">
+                    {headerCells.map((h, hIdx) => (
+                      <th key={hIdx} className="p-4 font-semibold text-[#0F172A] tracking-wide">
+                        {parseInlineStyles(h)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {bodyRows.map((row, rIdx) => (
+                    <tr key={rIdx} className="hover:bg-purple-50/20 transition-colors">
+                      {row.map((cell, cIdx) => (
+                        <td key={cIdx} className="p-4 text-[#475569] leading-relaxed">
+                          {parseInlineStyles(cell)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+          continue;
+        }
+      }
+
+      // Check for blockquotes (> ...)
+      if (trimmed.startsWith("> ")) {
+        if (currentBlock) flushBlock(uniqueIdx++);
+        elements.push(
+          <blockquote key={`quote-${uniqueIdx++}`} className="border-l-4 border-purple-500 bg-purple-50/40 py-3 px-4 my-6 rounded-r-2xl text-sm md:text-base text-[#334155] italic">
+            {parseInlineStyles(trimmed.replace(/^>\s*/, ""))}
+          </blockquote>
+        );
+        continue;
+      }
+
+      // Check for horizontal rule (---)
+      if (trimmed === "---" || trimmed === "***") {
+        if (currentBlock) flushBlock(uniqueIdx++);
+        elements.push(
+          <hr key={`hr-${uniqueIdx++}`} className="my-10 border-t border-gray-200" />
+        );
+        continue;
+      }
+
       // Check for subheadings (###)
       if (trimmed.startsWith("### ")) {
         if (currentBlock) flushBlock(uniqueIdx++);
