@@ -35,11 +35,14 @@ export default function Header() {
               <a href="/servicios/auditoria-ia" className="block px-4 py-2.5 text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8F9FA] rounded-lg transition-colors">
                 Auditoría de IA
               </a>
-              <a href="/servicios/consultoria-ia" className="block px-4 py-2.5 text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8F9FA] rounded-lg transition-colors">
-                Consultoría Estratégica
+              <a href="/servicios/automatizacion-workflows" className="block px-4 py-2.5 text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8F9FA] rounded-lg transition-colors">
+                Automatización de Workflows
               </a>
               <a href="/servicios/desarrollo-llm" className="block px-4 py-2.5 text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8F9FA] rounded-lg transition-colors">
-                Desarrollo LLM
+                Agentes & Modelos LLM
+              </a>
+              <a href="/servicios/consultoria-ia" className="block px-4 py-2.5 text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8F9FA] rounded-lg transition-colors">
+                Consultoría Estratégica
               </a>
             </div>
           </div>
@@ -162,8 +165,9 @@ export default function Header() {
             {mobileServiciosOpen && (
               <div className="mt-3 pl-4 flex flex-col gap-2 border-l border-gray-100">
                 <a href="/servicios/auditoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-sm text-[#475569] hover:text-[#0F172A]">Auditoría de IA</a>
+                <a href="/servicios/automatizacion-workflows" onClick={() => setMobileMenuOpen(false)} className="py-1 text-sm text-[#475569] hover:text-[#0F172A]">Automatización de Workflows</a>
+                <a href="/servicios/desarrollo-llm" onClick={() => setMobileMenuOpen(false)} className="py-1 text-sm text-[#475569] hover:text-[#0F172A]">Agentes & Modelos LLM</a>
                 <a href="/servicios/consultoria-ia" onClick={() => setMobileMenuOpen(false)} className="py-1 text-sm text-[#475569] hover:text-[#0F172A]">Consultoría Estratégica</a>
-                <a href="/servicios/desarrollo-llm" onClick={() => setMobileMenuOpen(false)} className="py-1 text-sm text-[#475569] hover:text-[#0F172A]">Desarrollo LLM</a>
               </div>
             )}
           </div>

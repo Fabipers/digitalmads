@@ -13,20 +13,27 @@ export default function HomeClient() {
 
   const services = [
     {
-      id: "agents",
-      title: "Agentes de IA Autónomos",
-      description: "Desplegamos agentes que automatizan el soporte técnico, ventas y flujos internos complejos, operando 24/7 sin intervención humana.",
+      id: "whatsapp",
+      title: "Agentes de IA para WhatsApp & Soporte 24/7",
+      description: "Desplegamos agentes conversacionales conectados a WhatsApp Business API y tu CRM para calificar leads, responder consultas y cerrar ventas sin intervención humana.",
+      badge: "Más Demandado",
+      roi: "Despliegue en 7-10 días · Reducción de costos de soporte >60%",
+      link: "/integraciones/whatsapp",
+      linkText: "Ver Agentes de WhatsApp",
       icon: (
         <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
       ),
-      badge: "Más Demandado",
     },
     {
       id: "rag",
-      title: "Sistemas RAG y Base de Conocimientos",
-      description: "Conectamos LLMs de última generación a la base de datos y documentos de tu empresa para consultas instantáneas y precisas.",
+      title: "Private Enterprise Brain (RAG As-a-Service)",
+      description: "Conectamos LLMs seguros a la documentación privada, manuales, contratos y tickets de tu empresa para consultas instantáneas y precisas con citas a fuentes reales.",
+      badge: "Alta Confidencialidad",
+      roi: "Cero alucinaciones · Control de accesos RBAC y datos cifrados",
+      link: "/servicios/desarrollo-llm",
+      linkText: "Ver Sistemas RAG & LLM",
       icon: (
         <svg className="w-8 h-8 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -35,8 +42,12 @@ export default function HomeClient() {
     },
     {
       id: "workflows",
-      title: "Automatización de Flujos (Workflows)",
-      description: "Integramos tus herramientas diarias (CRMs, ERPs, Notion, Slack) usando Make/Zapier e IA para optimizar procesos repetitivos.",
+      title: "AI Ops & Automatización de Workflows",
+      description: "Integramos tus herramientas diarias (CRMs, ERPs como Siigo/Alegra, Make, n8n, Slack) con IA para procesar facturas, actualizar registros y eliminar tareas manuales.",
+      badge: "Alto ROI",
+      roi: "Ahorro promedio de 20+ horas manuales/semana por equipo",
+      link: "/servicios/automatizacion-workflows",
+      linkText: "Ver Automatización de Workflows",
       icon: (
         <svg className="w-8 h-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -44,12 +55,16 @@ export default function HomeClient() {
       ),
     },
     {
-      id: "consulting",
-      title: "Consultoría de Estrategia IA",
-      description: "Evaluamos el potencial de la Inteligencia Artificial en tu modelo de negocio y diseñamos un plan de transformación digital a medida.",
+      id: "auditoria",
+      title: "Auditoría de Madurez & Viabilidad IA (48h)",
+      description: "Evaluamos el potencial de la Inteligencia Artificial en tus procesos operativos y diseñamos un plano técnico de arquitectura con cálculo de ROI garantizado.",
+      badge: "Sprint Express",
+      roi: "Diagnóstico técnico en 48 horas · Hoja de ruta sin costo de adopción a ciegas",
+      link: "/servicios/auditoria-ia",
+      linkText: "Ver Auditoría Express",
       icon: (
         <svg className="w-8 h-8 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
     },
@@ -113,20 +128,20 @@ export default function HomeClient() {
 
   const faqs = [
     {
-      question: "¿Qué tipo de empresas pueden beneficiarse de vuestra consultoría de IA?",
-      answer: "Trabajamos principalmente con empresas medianas y grandes del sector de servicios, fintech, logística y e-commerce que manejan volúmenes significativos de soporte al cliente, procesamiento de documentos, o flujos de trabajo repetitivos en la nube.",
+      question: "¿Cuánto cuesta implementar una solución de IA y qué plazo toma?",
+      answer: "Desplegamos nuestros servicios en sprints de 7 a 14 días laborables. Los precios son transparentes y cerrados según el alcance del proyecto. Puedes simular el presupuesto estimado de tu empresa en tiempo real utilizando nuestro simulador en digitalmads.net/cotizador.",
     },
     {
-      question: "¿Cómo garantizan la seguridad de los datos sensibles de nuestra empresa?",
-      answer: "La privacidad es nuestra máxima prioridad. Implementamos modelos en entornos dedicados que no utilizan tus datos para entrenamiento público (cumplimiento GDPR). Los datos empresariales están cifrados y los accesos están estrictamente limitados.",
+      question: "¿Se puede integrar con nuestro software actual (WhatsApp, HubSpot, Siigo, Salesforce)?",
+      answer: "Sí. No necesitas cambiar tus herramientas. Diseñamos agentes que se conectan directamente vía API y webhooks con WhatsApp Business, Siigo, Alegra, HubSpot, Salesforce, Zoho, Zendesk y bases de datos SQL/NoSQL.",
     },
     {
-      question: "¿Cuánto tiempo toma ver los primeros resultados?",
-      answer: "Generalmente entregamos prototipos funcionales y medibles (MVPs) en un plazo de 2 a 3 semanas. La integración completa de sistemas empresariales suele durar entre 6 y 10 semanas dependiendo de la complejidad.",
+      question: "¿Cómo garantizan la seguridad y privacidad de nuestros datos corporativos?",
+      answer: "Firmamos acuerdos de confidencialidad (NDA) y trabajamos bajo acuerdos de procesamiento de datos con cero retención (Zero Data Retention). Tus datos corporativos nunca se usan para reentrenar modelos públicos y cumplen estrictamente con la Ley 1581 (Habeas Data en Colombia) y SOC2 / GDPR.",
     },
     {
-      question: "¿Se requiere un equipo de desarrollo propio para trabajar con vosotros?",
-      answer: "No es necesario. Nosotros nos encargamos de todo el proceso de arquitectura, desarrollo, integraciones de APIs y mantenimiento. Si tienes un equipo de TI, trabajamos en coordinación con ellos mediante APIs limpias y documentación detallada.",
+      question: "¿Trabajan con clientes en Estados Unidos (modelo Nearshore)?",
+      answer: "Sí. Ofrecemos desarrollo e integración de IA Nearshore para empresas en Estados Unidos. Contamos con ingenieros bilingües en la misma zona horaria (EST / COT) a tarifas altamente competitivas frente al mercado local estadounidense.",
     },
   ];
 
@@ -180,33 +195,33 @@ export default function HomeClient() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 text-left relative z-10">
           {/* Column Left (60% Width) */}
           <div className="w-full lg:w-[60%] space-y-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
-              Consultoría de IA en Colombia
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-200 bg-purple-50 text-xs md:text-sm font-semibold tracking-wider text-purple-700 uppercase shadow-sm">
+              🇨🇴 Colombia & 🇺🇸 USA Nearshore AI Agency
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6.5xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-              Impulsamos tu negocio con <br />
+              Elimina el 70% de tus tareas operativas con <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-                Inteligencia Artificial Estratégica
+                Agentes de IA a Medida
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-light">
-              Creamos agentes autónomos, optimizamos tus bases de datos con RAG vectoriales e integramos tus herramientas mediante automatizaciones avanzadas de flujos de trabajo.
+              Diseñamos e integramos agentes autónomos en WhatsApp, bases de conocimiento RAG corporativas y flujos automatizados con Make y n8n. Resultados medibles en menos de 14 días para empresas en Colombia y Estados Unidos.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
-                href="#contacto"
+                href="/cotizador"
                 className="px-8 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-center font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
               >
-                Agendar Auditoría Gratuita
+                Simular Presupuesto en Vivo
               </a>
               <a
                 href="#servicios"
                 className="px-8 py-4 rounded-xl bg-[#F8F9FA] hover:bg-gray-100 text-[#0F172A] text-center font-semibold border border-gray-200 shadow-sm transition-all duration-300"
               >
-                Explorar Servicios
+                Ver Servicios Empaquetados
               </a>
             </div>
           </div>
@@ -219,13 +234,14 @@ export default function HomeClient() {
                 <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
                 <span className="w-3 h-3 rounded-full bg-green-400"></span>
               </div>
-              <span className="text-[#94A3B8] font-semibold text-[10px]">digitalmads-sys-status</span>
+              <span className="text-[#94A3B8] font-semibold text-[10px]">digitalmads-live-runtime</span>
             </div>
             <div className="space-y-2">
-              <p className="text-purple-600 font-bold">➜ Active Agents: 14</p>
-              <p className="text-cyan-600 font-bold">➜ Optimization Rate: +42%</p>
-              <p className="text-[#0F172A]">➜ Compliance: Ley 1581 (OK)</p>
-              <p className="text-emerald-600 font-bold">➜ API Response Latency: 1.8s</p>
+              <p className="text-purple-600 font-bold">➜ Active Deployments: WhatsApp, CRM, RAG</p>
+              <p className="text-cyan-600 font-bold">➜ Task Automation Rate: 72% avg</p>
+              <p className="text-[#0F172A]">➜ Compliance: Ley 1581 (CO) & SOC2 DPA (US)</p>
+              <p className="text-emerald-600 font-bold">➜ Avg Response Latency: 1.4s</p>
+              <p className="text-[#475569]">➜ Delivery Time: 7 - 14 business days</p>
             </div>
           </div>
         </div>
@@ -234,50 +250,46 @@ export default function HomeClient() {
       {/* Services Section */}
       <section id="servicios" className="py-24 max-w-7xl mx-auto px-6 border-t border-gray-200/60 bg-[#F8F9FA]">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Nuestras Capacidades</h2>
-          <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Soluciones de IA Corporativa</h3>
+          <h2 className="text-purple-600 text-xs md:text-sm font-semibold tracking-widest uppercase">Servicios Productizados</h2>
+          <h3 className="text-3xl md:text-5xl font-display font-bold text-[#0F172A]">Soluciones de IA con Entregables Claros</h3>
+          <p className="text-[#475569] max-w-2xl mx-auto text-base">
+            Sin consultorías abstractas de meses. Diseñamos, probamos y desplegamos soluciones concretas de IA con plazos de entrega cerrados y métricas medibles.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service) => (
             <div
               key={service.id}
-              className="bg-white border border-gray-200 rounded-3xl p-8 relative overflow-hidden group shadow-[0_8px_30px_rgb(0,0,0,0.01)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.03)] transition-all duration-300"
+              className="bg-white border border-gray-200 rounded-3xl p-8 relative overflow-hidden group shadow-[0_8px_30px_rgb(0,0,0,0.01)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.03)] transition-all duration-300 flex flex-col justify-between"
             >
-              {service.badge && (
-                <span className="absolute top-4 right-4 bg-purple-50 border border-purple-100 text-purple-700 text-xs px-3 py-1 rounded-full font-semibold">
-                  {service.badge}
-                </span>
-              )}
-              <div className="w-14 h-14 rounded-2xl bg-[#F8F9FA] flex items-center justify-center mb-6 border border-gray-100">
-                {service.icon}
+              <div>
+                {service.badge && (
+                  <span className="absolute top-4 right-4 bg-purple-50 border border-purple-100 text-purple-700 text-xs px-3 py-1 rounded-full font-semibold">
+                    {service.badge}
+                  </span>
+                )}
+                <div className="w-14 h-14 rounded-2xl bg-[#F8F9FA] flex items-center justify-center mb-6 border border-gray-100">
+                  {service.icon}
+                </div>
+                <h4 className="text-xl md:text-2xl font-display font-bold text-[#0F172A] mb-3">
+                  {service.title}
+                </h4>
+                <p className="text-[#475569] leading-relaxed text-sm md:text-base font-light mb-4">
+                  {service.description}
+                </p>
+                <div className="py-2 px-3 bg-purple-50/70 border border-purple-100/80 rounded-xl text-xs font-semibold text-purple-800 mb-6 inline-block">
+                  ⚡ {service.roi}
+                </div>
               </div>
-              <h4 className="text-xl md:text-2xl font-display font-bold text-[#0F172A] mb-3">
-                {service.title}
-              </h4>
-              <p className="text-[#475569] leading-relaxed text-sm md:text-base font-light mb-6">
-                {service.description}
-              </p>
-              {service.id === "agents" && (
-                <a href="/servicios/auditoria-ia" className="text-purple-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">
-                  Ver Auditorías de IA <span>→</span>
+              <div>
+                <a
+                  href={service.link}
+                  className="text-purple-600 font-semibold text-sm hover:text-purple-800 inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
+                >
+                  {service.linkText} <span>→</span>
                 </a>
-              )}
-              {service.id === "rag" && (
-                <a href="/servicios/desarrollo-llm" className="text-purple-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">
-                  Ver Desarrollo LLM <span>→</span>
-                </a>
-              )}
-              {service.id === "workflows" && (
-                <a href="/integraciones/crm" className="text-purple-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">
-                  Ver Integración CRM <span>→</span>
-                </a>
-              )}
-              {service.id === "consulting" && (
-                <a href="/servicios/consultoria-ia" className="text-purple-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">
-                  Ver Consultoría Estratégica <span>→</span>
-                </a>
-              )}
+              </div>
             </div>
           ))}
         </div>
