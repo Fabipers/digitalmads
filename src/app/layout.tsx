@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
 import JsonLd from "../components/JsonLd";
+import ChatWidget from "../components/ChatWidget";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -102,6 +103,7 @@ export default function RootLayout({
           </noscript>
         )}
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
