@@ -20,6 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/industrias/ecommerce',
     '/industrias/fintech',
     '/industrias/salud',
+    '/nearshore-ai',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
