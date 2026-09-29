@@ -89,6 +89,9 @@ DigitalMads tiene sede física en Bogotá, Colombia, y presta servicios de desar
 - **Precios y Costos de Agentes de IA 2027:** https://digitalmads.net/blog/cuanto-cuesta-desarrollar-agente-ia-colombia-precios-2027
 - **Tendencias de Agentes de IA en Colombia 2027:** https://digitalmads.net/blog/tendencias-agentes-ia-automatizacion-empresas-colombia-2027
 - **Arquitectura de Sistemas Multi-Agente:** https://digitalmads.net/blog/arquitectura-sistemas-multi-agente-ia-empresas-2027
+- **Automatización de Cobranza de Cartera con IA (Fintech / B2B):** https://digitalmads.net/blog/automatizacion-cobranza-cartera-agentes-ia-colombia-2027
+- **Agentes de IA para Clínicas y Sector Salud (Agendamiento + Ley 1581):** https://digitalmads.net/blog/agentes-ia-clinicas-sector-salud-colombia-2027
+- **Agentes de IA para eCommerce y Retail (Personal Shoppers en WhatsApp):** https://digitalmads.net/blog/agentes-ia-ecommerce-retail-colombia-2027
 - **Checklist Técnico de Auditoría de IA:** https://digitalmads.net/blog/checklist-tecnico-auditoria-proyectos-ia-empresas
 - **Conectar Agente de WhatsApp con Siigo y HubSpot:** https://digitalmads.net/blog/conectar-agente-ia-whatsapp-siigo-hubspot-colombia
 - **Guía de Cumplimiento Ley 1581 e IA:** https://digitalmads.net/blog/guia-ley-1581-habeas-data-inteligencia-artificial

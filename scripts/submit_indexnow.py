@@ -30,7 +30,10 @@ URLS_TO_INDEX = [
     f"https://{HOST}/blog/conectar-agente-ia-whatsapp-siigo-hubspot-colombia",
     f"https://{HOST}/blog/como-implementar-agente-ia-whatsapp-crm-colombia",
     f"https://{HOST}/blog/agentes-ia-reduccion-costos-operativos-colombia",
-    f"https://{HOST}/blog/nearshore-ai-development-colombia-us-startups"
+    f"https://{HOST}/blog/nearshore-ai-development-colombia-us-startups",
+    f"https://{HOST}/blog/automatizacion-cobranza-cartera-agentes-ia-colombia-2027",
+    f"https://{HOST}/blog/agentes-ia-clinicas-sector-salud-colombia-2027",
+    f"https://{HOST}/blog/agentes-ia-ecommerce-retail-colombia-2027"
 ]
 
 def submit():
