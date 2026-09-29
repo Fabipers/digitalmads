@@ -1,0 +1,64 @@
+---
+title: "Checklist Técnico para Auditar un Proyecto de IA en Empresas antes de Contratar"
+date: "2026-09-28"
+category: "Auditoría & Estrategia"
+readTime: "8 min"
+excerpt: "Guía y matriz técnica para evaluar propuestas de IA, viabilidad de APIs, costos de inferencia y seguridad antes de firmar con un proveedor."
+---
+
+Firmar un contrato de desarrollo de Inteligencia Artificial sin una auditoría técnica previa es la forma más rápida de quemar presupuesto corporativo. En las auditorías de infraestructura que realizamos en DigitalMads con medianas y grandes empresas en Colombia, encontramos un patrón recurrente: más del 65% de las propuestas comerciales vendidas como "soluciones avanzadas de IA" son en realidad wrappers superficiales de OpenAI conectados a bases de datos lentas, sin control de concurrencia y con costos de inferencia que se multiplican exponencialmente al salir a producción.
+
+Si eres director de tecnología (CTO), gerente de operaciones o líder de transformación digital, este checklist técnico te entrega las preguntas exactas, validaciones de código y banderas rojas (red flags) que debes exigir a cualquier proveedor antes de autorizar un anticipo o desplegar en tu red corporativa.
+
+## 1. Viabilidad de Datos y Arquitectura de Conexión
+
+Un modelo de lenguaje de última generación (como GPT-4o, Claude 3.5 Sonnet o Meta Llama 3) no resuelve mágicamente el desorden en los sistemas legados de tu empresa. La primera fase de una [auditoría de soluciones de IA para empresas](/servicios/auditoria-ia) se enfoca en la capa de datos:
+
+* **Disponibilidad de APIs reales:** ¿El proveedor propone consultar tu ERP o CRM mediante webhooks y endpoints REST/GraphQL documentados, o pretenden hacer web scraping o consultas directas a bases de datos de producción sin pool de conexiones?
+* **Tiempo de respuesta y latencia máxima:** Un agente conversacional que tarde más de 2.5 segundos en responder genera frustración en el usuario final. Exige al proveedor métricas de latencia p95 (percentil 95) considerando tanto el tiempo de inferencia del LLM como las consultas a tus bases de datos.
+* **Estructuración previa de documentos (RAG):** Si el proyecto incluye un asistente sobre manuales, PDFs o contratos corporativos, desconfía de quien prometa "subir los archivos y listo". Un pipeline RAG profesional exige chunking semántico por párrafos lógicos, normalización de tablas, embeddings vectoriales dedicados y filtrado de metadatos.
+
+## 2. FinOps y Control de Costos de Inferencia (Tokens)
+
+El error financiero más grave en proyectos de machine learning e IA es calcular los costos asumiendo tráfico lineal. Cuando 5.000 clientes interactúan simultáneamente en WhatsApp o en tu portal web, una arquitectura mal diseñada puede generar facturas de miles de dólares en consumo de API en un solo fin de semana.
+
+| Criterio Técnico | Señal de Alerta (Riesgo Alto) | Estándar Profesional Recomendado |
+| :--- | :--- | :--- |
+| **Selección de Modelos** | Usar modelos pesados (ej. Claude 3 Opus / GPT-4) para tareas simples de clasificación. | Enrutamiento inteligente: Modelos ligeros (GPT-4o mini, Haiku) para triaje; modelos avanzados solo para razonamiento complejo. |
+| **Caché Semántica** | Cada pregunta idéntica ejecuta una llamada completa al modelo pagando tokens completos. | Caché con Redis o Vector Cache: respuestas a FAQs se sirven en menos de 50ms a costo $0. |
+| **Límite de Contexto** | Reenviar todo el historial de la conversación (20+ mensajes) en cada prompt. | Ventana de contexto deslizante (Sliding Window) y resúmenes automáticos para no inflar tokens de entrada. |
+| **Rate Limiting** | Sin cuotas máximas por usuario. Un atacante puede vaciar el saldo de la API en minutos. | Circuit breakers y límites de gasto diarios configurados por IP y por identificador de cliente. |
+
+Para estimar estos rangos de consumo con precisión según tu volumen mensual, puedes utilizar nuestro [simulador de cotización de IA](/cotizador).
+
+## 3. Seguridad de Datos, Soberanía y Ley 1581 (Habeas Data)
+
+En Colombia, la Superintendencia de Industria y Comercio (SIC) sanciona con multas severas la exposición o transferencia indebida de datos personales. Cuando una solución de IA procesa números de cédula, correos, registros médicos o estados de cuenta de clientes colombianos, debes exigir garantías contractuales y técnicas:
+
+* **Contratos de Cero Retención (Zero Data Retention - ZDR):** Exige por escrito que las credenciales de API corporativas tengan deshabilitado el almacenamiento de prompts para entrenamiento público de los modelos.
+* **Middleware de Sanitización (PII Stripping):** Antes de enviar el texto al modelo externo, un filtro local debe anonimizar datos confidenciales (reemplazando números de identificación por tokens genéricos como `[CEDULA_01]`).
+* **Alternativa On-Premise / Private VPC:** Para entidades financieras, cooperativas de crédito y sector salud, evalúa si el proyecto puede desplegarse con modelos open source (ej. Llama 3 70B o DeepSeek) dentro de una nube privada virtual (AWS VPC us-east-1 o Azure Colombia) sin que los datos viajen por internet público.
+
+## 4. Matriz de Banderas Rojas (Red Flags) en Propuestas de Proveedores
+
+Antes de tomar una decisión comercial, revisa si la propuesta de tu proveedor incurre en alguna de estas prácticas:
+
+```
+[RED FLAG 1] Prometen "100% de precisión sin alucinaciones".
+-> Realidad: Ningún LLM probabilístico es 100% infalible. Un proveedor serio implementa validadores determinísticos (guardrails) y mecanismos de escalado a humanos.
+
+[RED FLAG 2] No entregan el código fuente ni la propiedad de los pipelines.
+-> Realidad: Tu empresa queda secuestrada por una tarifa recurrente sin poder migrar de infraestructura.
+
+[RED FLAG 3] No existe ambiente de Staging ni pruebas de regresión.
+-> Realidad: Los cambios en los prompts se prueban directamente en producción con clientes reales.
+
+[RED FLAG 4] El presupuesto no separa costos de desarrollo de costos de infraestructura/API.
+-> Realidad: Si el proveedor absorbe los costos de API en una tarifa fija baja, degradará el modelo a espaldas tuyas cuando suba el tráfico.
+```
+
+## 5. El Protocolo de Auditoría Express de 48 Horas
+
+Si tu empresa se encuentra evaluando un proveedor o si ya tienes una solución de Machine Learning o agentes autónomos en desarrollo que no está entregando los resultados esperados, en DigitalMads ejecutamos auditorías técnicas independientes de 48 horas.
+
+Analizamos tu arquitectura, medimos latencias de red, auditamos la seguridad de datos frente a la normativa colombiana y te entregamos un dictamen técnico imparcial con matriz de riesgos y estimación de costos reales. Puedes agendar una sesión de diagnóstico en nuestra [landing de auditoría de soluciones de IA](/servicios/auditoria-ia) o ponerte en contacto con nuestro equipo de ingenieros en Bogotá a través de [nuestro formulario corporativo](/contacto).

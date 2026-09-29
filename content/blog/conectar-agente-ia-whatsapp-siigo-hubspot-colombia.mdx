@@ -1,0 +1,129 @@
+---
+title: "Cómo Conectar un Agente de IA a WhatsApp Business API, Siigo y HubSpot en Colombia"
+date: "2026-09-28"
+category: "Automatización & CRM"
+readTime: "9 min"
+excerpt: "Arquitectura de software paso a paso para integrar LLMs con WhatsApp Cloud API, webhooks seguros y sincronización bidireccional en Siigo y HubSpot."
+---
+
+En el ecosistema empresarial colombiano, WhatsApp es el canal donde se cierran las ventas, pero también donde se pierden miles de millones de pesos por falta de seguimiento. El flujo típico de una empresa en Bogotá o Medellín es caótico: tres o cuatro asesores contestando mensajes desde un teléfono físico o una cuenta de WhatsApp Web compartida, prospectos calificados que se quedan sin registrar en HubSpot, y cotizaciones que demoran días en convertirse en facturas electrónicas dentro de Siigo Nube.
+
+Implementar un **Agente de IA Autónomo conectado a WhatsApp Business Cloud API, Siigo y HubSpot** transforma esta operación en una máquina de ventas sincronizada las 24 horas del día. En esta guía técnica, documentamos la arquitectura de software real, los webhooks de conexión y las llamadas a funciones (Tool Calling) necesarias para desplegar este flujo en producción con tiempos de respuesta inferiores a 2 segundos.
+
+## 1. Arquitectura del Sistema y Flujo de Datos
+
+Un error común es intentar conectar WhatsApp directamente a un LLM sin una capa intermedia de orquestación. Para soportar concurrencia y no saturar los límites de peticiones de Siigo o HubSpot, utilizamos una arquitectura basada en microservicios ligeros:
+
+```
+[Cliente en WhatsApp] (+57)
+         │  (1) Mensaje entrante (Webhook HTTPS)
+         ▼
+[Meta WhatsApp Cloud API]
+         │  (2) JSON Payload
+         ▼
+[Middleware Node.js / Fastify] (Validación de firma x-hub-signature-256)
+         │  (3) Prompt + Tools Schema
+         ▼
+[Motor Cognitivo - Claude 3.5 / GPT-4o]
+         │  (4) Function Call: "consultarCartera" o "crearLeadHubSpot"
+         ▼
+[Capa de Integración APIs]
+    ├──► [HubSpot API v3] (Actualiza Contacto y Etapa del Deal)
+    └──► [Siigo Nube API v1] (Valida NIT, consulta cartera y factura)
+         │  (5) Respuesta estructurada
+         ▼
+[Middleware Node.js]
+         │  (6) Envío de mensaje final formateado
+         ▼
+[WhatsApp Business API] ──► [Cliente recibe respuesta en < 2s]
+```
+
+## 2. Configuración del Webhook Seguro en WhatsApp Cloud API
+
+Meta exige que el webhook de recepción verifique un token de suscripción inicial (`hub.challenge`) y valide cada mensaje entrante mediante una firma criptográfica HMAC-SHA256 con tu `App Secret` para evitar inyecciones maliciosas.
+
+A continuación, un extracto en TypeScript del middleware que procesa el evento entrante y extrae el número del cliente en formato internacional colombiano (`573...`):
+
+```typescript
+// middleware/whatsappWebhook.ts
+import { FastifyRequest, FastifyReply } from "fastify";
+import crypto from "crypto";
+
+export async function verifySignature(req: FastifyRequest, reply: FastifyReply) {
+  const signature = req.headers["x-hub-signature-256"] as string;
+  if (!signature) {
+    return reply.status(401).send({ error: "Firma faltante" });
+  }
+
+  const expectedSignature = "sha256=" + crypto
+    .createHmac("sha256", process.env.META_APP_SECRET!)
+    .update(JSON.stringify(req.body))
+    .digest("hex");
+
+  if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
+    return reply.status(403).send({ error: "Firma inválida" });
+  }
+}
+```
+
+## 3. Integración con Siigo Nube API: Validación de NIT y Cartera
+
+Cuando el usuario escribe en WhatsApp preguntando: *"¿Cuánto debo de la factura del mes pasado?"* o *"Necesito cotizar 10 licencias a nombre de mi empresa con NIT 901234567"*, el agente no responde con texto libre; ejecuta una llamada de función (Tool Call) hacia Siigo Nube.
+
+Para conectar con Siigo API v1 en Colombia:
+1. **Autenticación Bearer:** Generar un token con tu `username` y `access_key` desde el panel de integraciones de Siigo Nube.
+2. **Consulta de Terceros (`GET /v1/customers`):** Validar si el cliente ya existe por número de identificación (cédula o NIT).
+3. **Consulta de Saldos (`GET /v1/invoices`):** Filtrar facturas con saldo pendiente para reportar el valor exacto en pesos colombianos (COP).
+
+```typescript
+// tools/siigoClient.ts
+export async function consultarFacturaSiigo(nit: string): Promise<string> {
+  const token = await getSiigoAuthToken();
+  const res = await fetch(`https://api.siigo.com/v1/invoices?customer_identification=${nit}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "Partner-Id": process.env.SIIGO_PARTNER_ID!
+    }
+  });
+
+  const data = await res.json();
+  if (!data.results || data.results.length === 0) {
+    return "No se encontraron facturas pendientes registradas en Siigo para este NIT.";
+  }
+
+  const saldoPendiente = data.results
+    .filter((inv: any) => inv.balance > 0)
+    .map((inv: any) => `Factura ${inv.name}: $${inv.balance.toLocaleString('es-CO')} COP con vencimiento el ${inv.due_date}`)
+    .join("\n");
+
+  return saldoPendiente || "El cliente se encuentra al día en su cartera.";
+}
+```
+
+## 4. Sincronización Bidireccional con HubSpot CRM
+
+Cada interacción ocurrida en WhatsApp debe quedar registrada en la línea de tiempo de HubSpot para que los ejecutivos comerciales tengan contexto completo si deben intervenir:
+
+* **Creación automática de Contactos:** Al recibir el primer mensaje, el middleware busca el número en HubSpot (`/crm/v3/objects/contacts/search`). Si no existe, lo crea con el nombre y teléfono.
+* **Calificación y Deals:** Si el agente de IA detecta que el prospecto cumple con el presupuesto y la intención de compra, crea un `Deal` en la etapa *"Lead Calificado por IA"* y asigna una tarea de seguimiento en el calendario del asesor.
+* **Registro de transcripción:** El resumen de la conversación se inyecta como una nota (`Note`) en el objeto del contacto sin saturar la vista con mensajes innecesarios.
+
+Si tu empresa busca una implementación llave en mano de este ecosistema, en nuestra sección de [agentes de IA para WhatsApp](/integraciones/whatsapp) e [integraciones de CRM corporativo](/integraciones/crm) diseñamos el flujo a medida en menos de 15 días hábiles.
+
+## 5. Costos y Retorno de Inversión (ROI) en Colombia
+
+El modelo financiero de esta automatización es contundente:
+
+| Concepto | Operación Tradicional (Humanos) | Con Agente de IA Integrado |
+| :--- | :--- | :--- |
+| **Costo por Conversación** | $5.000 – $12.000 COP por ticket atendido (salarios, dotación, licencias). | ~$50 COP ($0.0125 USD) tarifa Meta + ~$20 COP en inferencia de tokens. |
+| **Tiempo de Respuesta** | 15 a 45 minutos (en horario laboral); 12+ horas en fines de semana. | **Menos de 2 segundos**, 24 horas al día, 7 días a la semana. |
+| **Sincronización a Siigo/CRM** | Manual al final de la jornada (alta tasa de error y omisión de datos). | **Instantánea**, validada mediante API con verificación de NIT. |
+| **Escalabilidad** | Exige contratar más personal por cada incremento del 30% en volumen. | Soporta 10.000 conversaciones concurrentes sin aumentar costos fijos. |
+
+## Próximos Pasos para tu Empresa
+
+La integración de agentes autónomos con WhatsApp y sistemas administrativos ya no es una prueba de concepto experimental; es el estándar de eficiencia operativa para las empresas líderes en Colombia.
+
+Para evaluar la compatibilidad de tus sistemas actuales (versión de Siigo, plan de HubSpot y cuenta de WhatsApp Business Manager), te invitamos a estimar los costos con nuestro [cotizador de proyectos de IA](/cotizador) o agendar una sesión técnica de diagnóstico con nuestro equipo de ingenieros en Bogotá a través de [nuestra página de contacto](/contacto).
