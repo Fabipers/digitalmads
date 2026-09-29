@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 export const revalidate = 3600; // Revalidar cada hora si se generan cambios
 
 export async function GET() {
-  const posts = getAllPosts().slice(0, 8); // Top 8 artículos más recientes y relevantes
+  const posts = getAllPosts().slice(0, 12); // Top 12 artículos más recientes y relevantes
 
   const blogSection = posts
     .map(

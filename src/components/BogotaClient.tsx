@@ -319,6 +319,96 @@ export default function BogotaClient() {
         </div>
       </section>
 
+      {/* FAQ Section with FAQPage Schema for Local SEO & GEO */}
+      <section className="py-20 bg-[#F8F9FA] border-t border-gray-200">
+        <div className="max-w-4xl mx-auto px-6 space-y-10 text-left">
+          <div className="space-y-3">
+            <span className="text-xs uppercase font-bold tracking-widest text-purple-600">Preguntas Frecuentes</span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0F172A]">
+              Inteligencia Artificial para Empresas en Bogotá (2027)
+            </h2>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Respuestas directas sobre costos de desarrollo, integraciones con software empresarial y normatividad legal en la capital.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿Qué servicios de inteligencia artificial ofrece DigitalMads en Bogotá?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                En Bogotá desarrollamos agentes autónomos de IA para WhatsApp Business y web, bases de conocimiento privadas (RAG corporativo sobre documentos y manuales), automatización de procesos operativos (Make, n8n, Zapier) y auditorías técnicas de madurez de IA para empresas.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿Cuánto cuesta implementar un agente de IA en una empresa en Bogotá para 2027?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                El costo de desarrollo e implementación oscila entre $4.500.000 COP y $24.000.000 COP de inversión inicial (setup) según el grado de integración con CRMs o ERPs (como Siigo o HubSpot), con costos recurrentes de tokens y soporte técnico que inician desde $350.000 COP al mes.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿Cómo asegura DigitalMads el cumplimiento de la Ley 1581 (Habeas Data) en Colombia?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Aplicamos el principio de Privacidad por Diseño mediante middleware de anonimización PII, contratos empresariales de Cero Retención de Datos (Zero Data Retention) con los proveedores de modelos y trazabilidad total conforme a las directrices de la Superintendencia de Industria y Comercio (SIC).
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿DigitalMads ofrece consultoría técnica presencial en Bogotá?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Sí. Nuestro equipo de ingenieros y consultores senior atiende sesiones técnicas presenciales en los principales corredores corporativos de Bogotá (Chicó, Calle 100, Chapinero, Salitre y Usaquén), además de brindar soporte continuo de forma remota.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* JSON-LD FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "¿Qué servicios de inteligencia artificial ofrece DigitalMads en Bogotá?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "En Bogotá desarrollamos agentes autónomos de IA para WhatsApp Business y web, bases de conocimiento privadas (RAG corporativo), automatización de procesos operativos (Make, n8n) y auditorías técnicas de madurez de IA para empresas."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Cuánto cuesta implementar un agente de IA en una empresa en Bogotá para 2027?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "El costo de desarrollo e implementación oscila entre $4.500.000 COP y $24.000.000 COP de inversión inicial (setup), con costos recurrentes de tokens y soporte técnico que inician desde $350.000 COP al mes."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Cómo asegura DigitalMads el cumplimiento de la Ley 1581 (Habeas Data) en Colombia?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Aplicamos el principio de Privacidad por Diseño mediante middleware de anonimización PII, contratos empresariales de Cero Retención de Datos (Zero Data Retention) y trazabilidad conforme a la SIC."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿DigitalMads ofrece consultoría técnica presencial en Bogotá?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí. Nuestro equipo de ingenieros y consultores senior atiende sesiones técnicas presenciales en los principales corredores corporativos de Bogotá (Chicó, Calle 100, Chapinero, Salitre y Usaquén)."
+                  }
+                }
+              ]
+            })
+          }}
+        />
+      </section>
+
       {/* CTA / Contact Section (Split Form Layout) */}
       <section id="contacto" className="py-24 relative overflow-hidden border-t border-gray-200/60 bg-white">
         <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-left">
