@@ -366,6 +366,16 @@ export default function BlogPostPage({ params }: Props) {
                   <span className="text-purple-600 font-bold">Horarios:</span>
                   <span className="font-light">Lunes a Viernes, 9:00 AM - 4:00 PM</span>
                 </div>
+                <div className="pt-2">
+                  <a
+                    href="https://wa.me/573502617242"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-700 font-semibold text-xs transition-all shadow-sm"
+                  >
+                    <span>💬</span> Chatear por WhatsApp
+                  </a>
+                </div>
               </div>
             </div>
 

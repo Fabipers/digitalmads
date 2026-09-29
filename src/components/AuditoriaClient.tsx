@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { pushToDataLayer } from "@/lib/gtm";
 
 export default function AuditoriaClient() {
   const [progress, setProgress] = useState(0);
@@ -65,6 +66,11 @@ export default function AuditoriaClient() {
       
       if (response.ok) {
         setFormSubmitted(true);
+        pushToDataLayer({
+          event: "generate_lead",
+          form_name: "auditoria_ia_page",
+          service: "Auditoría de IA para Empresas"
+        });
         e.currentTarget.reset();
       } else {
         setIsError(true);
@@ -94,9 +100,9 @@ export default function AuditoriaClient() {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-none text-[#0F172A]">
-              Auditoría de Inteligencia Artificial <br />
+              Auditoría de Soluciones de IA <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-                y Viabilidad Tecnológica
+                para Empresas y Machine Learning
               </span>
             </h1>
 
@@ -282,6 +288,96 @@ export default function AuditoriaClient() {
             )}
           </div>
         </div>
+      </section>
+
+      {/* FAQ Section with FAQPage Schema */}
+      <section className="py-20 bg-[#F8F9FA] border-t border-gray-200">
+        <div className="max-w-4xl mx-auto px-6 space-y-10">
+          <div className="text-left space-y-3">
+            <span className="text-xs uppercase font-bold tracking-widest text-purple-600">Preguntas Frecuentes</span>
+            <h2 className="text-3xl font-display font-bold text-[#0F172A]">
+              Auditoría de Soluciones de Inteligencia Artificial para Empresas
+            </h2>
+            <p className="text-gray-600">
+              Respuestas clave sobre nuestro proceso de evaluación técnica, seguridad de datos y retorno de inversión en proyectos de IA y Machine Learning.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿Qué incluye una auditoría de proyectos de inteligencia artificial para empresas?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Evaluamos la infraestructura de datos actual, la calidad de APIs disponibles, la factibilidad técnica de integrar modelos LLM (OpenAI, Anthropic o modelos Open Source locales) y calculamos el retorno de inversión (ROI) proyectado antes de escribir una sola línea de código.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿Por qué auditar una solución de Machine Learning antes de implementarla?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Más del 70% de las implementaciones de IA fracasan por silos de información, costos inesperados de inferencia de tokens o problemas de latencia. Una auditoría técnica independiente identifica cuellos de botella y previene gastos innecesarios en licencias o arquitecturas sobredimensionadas.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿Cómo asegura la auditoría el cumplimiento de la Ley 1581 (Habeas Data en Colombia)?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Revisamos exhaustivamente las políticas de retención, anonimización de datos sensibles y contratos de procesamiento para garantizar que ninguna información corporativa o de clientes sea utilizada para entrenar modelos públicos externos.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-2 shadow-sm">
+              <h3 className="text-lg font-bold text-[#0F172A]">¿Cuánto tiempo toma la entrega del informe de auditoría de IA?</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Nuestro diagnóstico express se entrega en 48 horas hábiles, incluyendo un plano de arquitectura técnica, matriz de riesgos, cotización detallada y roadmap secuencial de despliegue.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* JSON-LD FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "¿Qué incluye una auditoría de proyectos de inteligencia artificial para empresas?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Evaluamos la infraestructura de datos actual, la calidad de APIs disponibles, la factibilidad técnica de integrar modelos LLM y calculamos el retorno de inversión proyectado."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Por qué auditar una solución de Machine Learning antes de implementarla?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Una auditoría técnica independiente previene costos inesperados de inferencia, problemas de latencia y arquitecturas sobredimensionadas."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Cómo asegura la auditoría el cumplimiento de la Ley 1581 (Habeas Data en Colombia)?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Garantizamos que ninguna información confidencial de clientes o de la empresa sea utilizada para entrenar modelos públicos externos."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Cuánto tiempo toma la entrega del informe de auditoría de IA?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "El diagnóstico express se entrega en 48 horas hábiles con roadmap y arquitectura técnica."
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </section>
 
       <Footer />

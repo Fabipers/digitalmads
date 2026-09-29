@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { pushToDataLayer } from "@/lib/gtm";
 
 export default function ContactoClient() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -35,6 +36,11 @@ export default function ContactoClient() {
       
       if (response.ok) {
         setFormSubmitted(true);
+        pushToDataLayer({
+          event: "generate_lead",
+          form_name: "contacto_page",
+          service: (data.needs as string) || "General"
+        });
         e.currentTarget.reset();
       } else {
         setIsError(true);
@@ -99,6 +105,7 @@ export default function ContactoClient() {
                 href="https://wa.me/573502617242"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => pushToDataLayer({ event: "click_whatsapp", click_location: "contacto_page" })}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-700 font-semibold text-sm transition-all duration-300 shadow-sm"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

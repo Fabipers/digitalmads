@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { pushToDataLayer } from "@/lib/gtm";
 
 type ServiceChoice = "whatsapp" | "rag" | "workflows" | "auditoria" | null;
 
@@ -79,6 +80,11 @@ Canal: Live Assistant Widget`;
 
       if (response.ok) {
         setFormSubmitted(true);
+        pushToDataLayer({
+          event: "generate_lead",
+          form_name: "chat_widget",
+          service: chosenServiceTitle
+        });
       } else {
         setIsError(true);
       }

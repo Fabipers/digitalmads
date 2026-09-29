@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { pushToDataLayer } from "@/lib/gtm";
 
 type ServiceId = "whatsapp" | "rag" | "workflows" | "auditoria";
 type ScaleId = "startup" | "growth" | "enterprise";
@@ -156,6 +157,13 @@ Notas adicionales: ${formData.get("notes") || "Ninguna"}`;
 
       if (response.ok) {
         setFormSubmitted(true);
+        pushToDataLayer({
+          event: "quote_completed",
+          service_chosen: currentService.name,
+          currency: currency,
+          scale: scaleId,
+          estimated_pricing: currentPricing
+        });
       } else {
         setIsError(true);
       }
