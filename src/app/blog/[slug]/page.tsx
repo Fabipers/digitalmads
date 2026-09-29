@@ -110,7 +110,7 @@ export default function BlogPostPage({ params }: Props) {
         }
         elements.push(
           <div key={`code-${uniqueIdx++}`} className="my-6 rounded-2xl bg-slate-900 p-4 font-mono text-xs md:text-sm text-slate-100 overflow-x-auto shadow-inner border border-slate-800">
-            <pre>
+            <pre className="whitespace-pre-wrap break-words">
               <code>{codeLines.join("\n")}</code>
             </pre>
           </div>

@@ -41,21 +41,20 @@ En Colombia, la Superintendencia de Industria y Comercio (SIC) sanciona con mult
 
 ## 4. Matriz de Banderas Rojas (Red Flags) en Propuestas de Proveedores
 
-Antes de tomar una decisión comercial, revisa si la propuesta de tu proveedor incurre en alguna de estas prácticas:
+Antes de tomar una decisión comercial, revisa si la propuesta de tu proveedor incurre en alguna de estas prácticas de alto riesgo:
 
-```
-[RED FLAG 1] Prometen "100% de precisión sin alucinaciones".
--> Realidad: Ningún LLM probabilístico es 100% infalible. Un proveedor serio implementa validadores determinísticos (guardrails) y mecanismos de escalado a humanos.
+| Promesa del Proveedor (Bandera Roja) | La Realidad Técnica | Lo que Debes Exigir |
+| :--- | :--- | :--- |
+| **"100% de precisión sin alucinaciones"** | Ningún modelo probabilístico es infalible. Prometer cero error es desconocer cómo funcionan los LLMs. | Guardrails determinísticos, validación de esquemas JSON y escalado a humanos cuando la confianza baje del 90%. |
+| **No entregan código fuente ni pipelines** | Tu empresa queda cautiva pagando mensualidades eternas sin poder migrar de proveedor ni de nube. | Entrega completa de la propiedad intelectual: prompts, scripts de integración y esquemas de base de datos. |
+| **Sin ambiente de Staging ni pruebas de regresión** | Cualquier ajuste a un prompt puede dañar respuestas críticas directamente frente a tus clientes en vivo. | Suite de evaluación automatizada (evals) y entorno de pruebas aislado previo al paso a producción. |
+| **Tarifa fija que absorbe el consumo de API** | El proveedor degradará el modelo a tus espaldas (usando modelos baratos e imprecisos) cuando suba el tráfico. | Facturación transparente y desglosada: desarrollo independiente del consumo de tokens en tu propia nube. |
 
-[RED FLAG 2] No entregan el código fuente ni la propiedad de los pipelines.
--> Realidad: Tu empresa queda secuestrada por una tarifa recurrente sin poder migrar de infraestructura.
+* **🚩 Red Flag 1: Prometer "100% de precisión sin alucinaciones".** Ningún modelo de lenguaje probabilístico es infalible. Un proveedor serio nunca promete perfección absoluta; en su lugar, implementa validadores determinísticos (guardrails), esquemas JSON estrictos y mecanismos de escalado a operadores humanos cuando la confianza del modelo decae.
+* **🚩 Red Flag 2: No entregar el código fuente ni la propiedad de los pipelines.** Tu empresa queda secuestrada bajo un modelo cautivo con tarifas mensuales obligatorias, sin la posibilidad de migrar de nube o cambiar de proveedor si el servicio se degrada. Exige siempre la propiedad intelectual de los prompts, scripts y esquemas.
+* **🚩 Red Flag 3: No disponer de ambiente de Staging ni pruebas de regresión.** Cualquier cambio en las instrucciones de un agente puede quebrar flujos que antes funcionaban. Si el proveedor prueba los cambios directamente en producción con tus clientes, el riesgo operativo para tu marca es inaceptable.
+* **🚩 Red Flag 4: El presupuesto no separa costos de desarrollo de consumo de API.** Si un proveedor absorbe los costos de tokens en una tarifa fija sospechosamente baja, degradará silenciosamente el modelo (cambiando un modelo avanzado por uno más barato e impreciso) en cuanto tu volumen de usuarios aumente.
 
-[RED FLAG 3] No existe ambiente de Staging ni pruebas de regresión.
--> Realidad: Los cambios en los prompts se prueban directamente en producción con clientes reales.
-
-[RED FLAG 4] El presupuesto no separa costos de desarrollo de costos de infraestructura/API.
--> Realidad: Si el proveedor absorbe los costos de API en una tarifa fija baja, degradará el modelo a espaldas tuyas cuando suba el tráfico.
-```
 
 ## 5. El Protocolo de Auditoría Express de 48 Horas
 
