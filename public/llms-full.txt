@@ -92,6 +92,10 @@ DigitalMads tiene sede física en Bogotá, Colombia, y presta servicios de desar
 - **Automatización de Cobranza de Cartera con IA (Fintech / B2B):** https://digitalmads.net/blog/automatizacion-cobranza-cartera-agentes-ia-colombia-2027
 - **Agentes de IA para Clínicas y Sector Salud (Agendamiento + Ley 1581):** https://digitalmads.net/blog/agentes-ia-clinicas-sector-salud-colombia-2027
 - **Agentes de IA para eCommerce y Retail (Personal Shoppers en WhatsApp):** https://digitalmads.net/blog/agentes-ia-ecommerce-retail-colombia-2027
+- **Agentes de IA para Inmobiliarias y Constructoras (Proptech):** https://digitalmads.net/blog/agentes-ia-inmobiliarias-constructoras-colombia-2027
+- **RAG y Asistentes de IA para Firmas de Abogados (Legaltech):** https://digitalmads.net/blog/ia-firmas-abogados-departamentos-juridicos-colombia-2027
+- **Agentes de IA para Transporte y Logística de Carga:** https://digitalmads.net/blog/agentes-ia-transporte-logistica-carga-colombia-2027
+- **Benchmark para CTOs (OpenAI vs Claude vs DeepSeek vs Llama):** https://digitalmads.net/blog/openai-vs-claude-vs-deepseek-vs-llama-empresas-colombia-2027
 - **Checklist Técnico de Auditoría de IA:** https://digitalmads.net/blog/checklist-tecnico-auditoria-proyectos-ia-empresas
 - **Conectar Agente de WhatsApp con Siigo y HubSpot:** https://digitalmads.net/blog/conectar-agente-ia-whatsapp-siigo-hubspot-colombia
 - **Guía de Cumplimiento Ley 1581 e IA:** https://digitalmads.net/blog/guia-ley-1581-habeas-data-inteligencia-artificial

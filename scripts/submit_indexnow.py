@@ -33,7 +33,11 @@ URLS_TO_INDEX = [
     f"https://{HOST}/blog/nearshore-ai-development-colombia-us-startups",
     f"https://{HOST}/blog/automatizacion-cobranza-cartera-agentes-ia-colombia-2027",
     f"https://{HOST}/blog/agentes-ia-clinicas-sector-salud-colombia-2027",
-    f"https://{HOST}/blog/agentes-ia-ecommerce-retail-colombia-2027"
+    f"https://{HOST}/blog/agentes-ia-ecommerce-retail-colombia-2027",
+    f"https://{HOST}/blog/agentes-ia-inmobiliarias-constructoras-colombia-2027",
+    f"https://{HOST}/blog/ia-firmas-abogados-departamentos-juridicos-colombia-2027",
+    f"https://{HOST}/blog/agentes-ia-transporte-logistica-carga-colombia-2027",
+    f"https://{HOST}/blog/openai-vs-claude-vs-deepseek-vs-llama-empresas-colombia-2027"
 ]
 
 def submit():
